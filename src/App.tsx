@@ -13,7 +13,7 @@ const App = () => {
             <NavButton onClick={() => setPageSelection('bmi')}>BMI</NavButton>
           </nav>
 
-          <section className="rounded p-4 m-4 bg-khaki">
+          <section className="rounded p-4 m-4 bg-silk">
             {pageSelection === 'bmi' && <Bmi />}
           </section>
         </div>
