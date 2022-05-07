@@ -1,25 +1,53 @@
 import { useCallback, useEffect, useState } from "react";
 import Input from "../component/Input";
 
-type BmiColor = 'red' | 'green' | 'orange' | 'pink' | 'yellow';
+type BmiColor = 'red-500' | 'mint-green';
+type BmiItem = { value: number; color: BmiColor, weightStatus: WeightStatus };
+type WeightStatus = 'morbid' | 'obesity' | 'normal' | 'skinny';
 
 const MIN_BMI = 8;
 const MAX_BMI = 40;
 
-const BMI_COLORS: Array<{ bmi: number; color: BmiColor }> = [
+const BMI: Array<BmiItem> = [
   {
-    bmi: 18,
-    color: 'red'
+    value: 30,
+    color: 'red-500',
+    weightStatus: 'obesity',
   },
   {
-    bmi: 25,
-    color: 'green',
+    value: 25,
+    color: 'red-500',
+    weightStatus: 'obesity',
   },
   {
-    bmi: 30,
-    color: 'pink',
+    value: 18,
+    color: 'mint-green',
+    weightStatus: 'normal',
+  },
+  {
+    value: 0,
+    color: 'red-500',
+    weightStatus: 'skinny',
   },
 ];
+
+const getColorFromBmi = (bmi: number): string => {
+  for (const bmiItem of BMI) {
+    if (bmi >= bmiItem.value) {
+      return `bg-${bmiItem.color}`;
+    }
+  }
+  return 'bg-red-500';
+}
+
+const getBmiItem = (bmi : number): BmiItem => {
+  for (const bmiItem of BMI) {
+    if (bmi >= bmiItem.value) {
+      return bmiItem;
+    }
+  }
+  return BMI[0];
+}
 
 const Bmi = () => {
   const [weight, setWeight] = useState('');
@@ -27,14 +55,6 @@ const Bmi = () => {
   const [bmi, setBmi] = useState(0);
   const getBmi = (weight: number, height: number) => height && weight && Math.round(weight / (height / 100) ** 2);
   const updateBmi = useCallback(() => setBmi(getBmi(Number(weight), Number(height))), [height, weight]);
-  const getColor = (): string => {
-    for (const bmi_color of BMI_COLORS) {
-      if (bmi < bmi_color.bmi) {
-        return `bg-${bmi_color.color}-500`;
-      }
-    }
-    return 'bg-red-500';
-  }
 
   useEffect(() => {
     updateBmi();
@@ -42,14 +62,18 @@ const Bmi = () => {
 
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex flex-start">
         <div className="m-2">
-          <Input value={height} setValue={setHeight}>Height <i>(cm)</i></Input>
-          <Input value={weight} setValue={setWeight}>Weight <i>(kg)</i></Input>
+          <Input value={height} setValue={setHeight} type="number">Height</Input>
+          <Input value={weight} setValue={setWeight} type="number">Weight</Input>
 
           {bmi > MIN_BMI && bmi < MAX_BMI && (
-            <div className={`rounded ${getColor()} p-5 mt-4`}>
-              BMI: {bmi}
+            <div className="mt-4">
+              BMI
+
+              <div className={`p-2 mt-2 rounded ${getColorFromBmi(bmi)}`}>
+                {bmi} ({getBmiItem(bmi).weightStatus})
+              </div>
             </div>
           )}
         </div>
