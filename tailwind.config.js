@@ -5,9 +5,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        silk: {
-          DEFAULT: '#F0E68C'
-        }
+        cream: {
+          DEFAULT: '#FFFCF6'
+        },
+        'mint-green': {
+          DEFAULT: '#48CFB7',
+        } 
       }
     },
   },
