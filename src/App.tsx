@@ -1,6 +1,7 @@
 import { useState } from "react";
 import NavButton from "./component/NavButton";
 import Bmi from "./page/Bmi";
+import Macros from "./page/Macros";
 
 const App = () => {
   const [pageSelection, setPageSelection] = useState<'bmi' | 'macro'>('bmi');
@@ -16,6 +17,7 @@ const App = () => {
 
           <section className="rounded">
             {pageSelection === 'bmi' && <Bmi />}
+            {pageSelection === 'macro' && <Macros />}
           </section>
         </div>
       </div>
