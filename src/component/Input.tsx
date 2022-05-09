@@ -4,7 +4,7 @@ type InputProps = {
   children: ReactNode;
   value: string | number;
   type?: 'text' | 'pwd' | 'number';
-  setValue: Dispatch<SetStateAction<string>>;
+  setValue: Dispatch<SetStateAction<string>> | Dispatch<SetStateAction<number>>;
 };
 
 const Input = ({ children, value, type = 'text', setValue }: InputProps) => {
