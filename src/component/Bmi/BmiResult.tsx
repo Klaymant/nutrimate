@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+import { TimeUtil } from "../../services/TimeUtil";
+
 type BmiColor = 'red-500' | 'mint-green';
 type BmiItem = { value: number; color: BmiColor, weightStatus: WeightStatus };
 type WeightStatus = 'morbid' | 'obesity' | 'normal' | 'skinny';
@@ -25,15 +28,6 @@ const BMI: Array<BmiItem> = [
   },
 ];
 
-const getColorFromBmi = (bmi: number): string => {
-  for (const bmiItem of BMI) {
-    if (bmi >= bmiItem.value) {
-      return `${bmiItem.color}`;
-    }
-  }
-  return 'red-500';
-}
-
 const getBmiItem = (bmi : number): BmiItem => {
   for (const bmiItem of BMI) {
     if (bmi >= bmiItem.value) {
@@ -47,16 +41,27 @@ type BmiResultProps = {
   bmi: number;
 };
 
-const BmiResult = ({ bmi }: BmiResultProps) => (
-  <>
-    <div className="mt-4">
-      <h1 className="text-center font-bold">BMI</h1>
+const BmiResult = ({ bmi }: BmiResultProps) => {
+  const [delayedBmi, setDelayedBmi] = useState(bmi);
 
-      <div className={`p-2 mt-2 rounded border-2 border-black`}>
-        {bmi} (<span className={`text-${getColorFromBmi(bmi)} font-bold`}>{getBmiItem(bmi).weightStatus}</span>)
+  useEffect(() => {
+    (async () => {
+      for (let i = 0; i < bmi; i++) {
+        setDelayedBmi(i);
+        await TimeUtil.sleep();
+      }
+    })()
+  }, [bmi])
+
+  return (
+    <>
+      <div className="mt-14 mb-8">
+        <h1 className="mt-4">
+          <span className="font-semibold">BMI</span>: {delayedBmi} (<span>{getBmiItem(bmi).weightStatus}</span>)
+        </h1>
       </div>
-    </div>
-  </>
-);
+    </>
+  );
+}
 
 export default BmiResult;
