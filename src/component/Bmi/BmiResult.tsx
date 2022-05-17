@@ -10,10 +10,13 @@ const BmiResult = ({ bmi }: BmiResultProps) => {
 
   return (
     <>
-      <div className="mt-14 mb-8">
-        <h1 className="mt-4">
-          <span className="font-semibold">BMI</span>: {delayedBmi} (<span>{getBmiItem(bmi).weightStatus}</span>)
-        </h1>
+      <div className="flex justify-center font-semibold text-center my-2">
+        <div>
+          <div className="flex mt-4 bg-cornflower-blue w-20 h-20 rounded-full text-center justify-center items-center p-8 text-xl bg-opacity-70 shadow-md">
+            {delayedBmi}
+          </div>
+          {delayedBmi === bmi - 1 && getBmiItem(bmi).weightStatus}
+        </div>
       </div>
     </>
   );
