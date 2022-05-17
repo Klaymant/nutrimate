@@ -4,13 +4,13 @@ import Input from "../component/Input";
 import MacrosResult from "../component/Macros/MacrosResult";
 import Select, { Option } from "../component/Select";
 
-enum ActivityLevel {
-  NONE,
-  LOW,
-  MID,
-  HIGH,
-  VERY_HIGH,
-}
+// enum ActivityLevel {
+//   NONE,
+//   LOW,
+//   MID,
+//   HIGH,
+//   VERY_HIGH,
+// }
 
 const ACTIVITY_OPTIONS: Array<Option> = [
   {
@@ -39,7 +39,7 @@ const Macros = () => {
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
   const [age, setAge] = useState(0);
-  const [activityLevel, setActivityLevel] = useState<ActivityLevel>(ActivityLevel.NONE);
+  // const [activityLevel, setActivityLevel] = useState<ActivityLevel>(ActivityLevel.NONE);
   const [result, setResult] = useState(0);
 
   const updateResult = () => setResult(0);
