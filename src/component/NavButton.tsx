@@ -6,10 +6,10 @@ type NavButtonProps = {
   onClick?: () => void;
 };
 
-const getActiveClasses = (active: boolean) => active ? 'border-mint-green' : 'border-gray-600';
+const getActiveClasses = (active: boolean) => active ? 'text-cornflower-blue border-b-4 border-cornflower-blue' : 'text-black';
 
 const NavButton = ({ children, active, onClick }: NavButtonProps) => (
-  <button className={`rounded-xl bg-mint-green ${getActiveClasses(active)} outline-none hover:text-white p-2 m-2 outline`} onClick={onClick}>{children}</button>
+  <button className={`font-semibold ${getActiveClasses(active)} outline-none p-1 m-1 mx-2 outline`} onClick={onClick}>{children}</button>
 );
 
 export default NavButton;
