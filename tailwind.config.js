@@ -11,7 +11,10 @@ module.exports = {
         },
         'mint-green': {
           DEFAULT: '#48CFB7',
-        } 
+        },
+        'cornflower-blue': {
+          DEFAULT: '#6495ED',
+        }
       }
     },
   },
