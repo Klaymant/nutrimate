@@ -55,12 +55,13 @@ const Macros = () => {
 
   const updateResult = () => {
     const calories = calculateCalories(gender, height, weight, age, activityLevel);
+    const proteins = calculateProteins(weight);
+    const fat = calculateFat(weight);
 
     setCaloriesAmount(calories);
-    setProteinsAmount(calculateProteins(weight));
-    setFatAmount(calculateFat(weight));
-    console.log(caloriesAmount);
-    setCarbsAmount(calculateCarbs(calories, proteinsAmount, fatAmount));
+    setProteinsAmount(proteins);
+    setFatAmount(fat);
+    setCarbsAmount(calculateCarbs(calories, proteins, fat));
   };
 
   return (
