@@ -13,7 +13,7 @@ const Bmi = () => {
   return (
     <>
       <div className="flex flex-start">
-        <div className="m-2">
+        <div className="m-2 w-full">
           <Input value={height} setValue={setHeight} type="number">Height</Input>
           <Input value={weight} setValue={setWeight} type="number">Weight</Input>
           <Button onClick={updateBmi}>Calculate</Button>
