@@ -9,7 +9,7 @@ const App = () => {
 
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex justify-center mb-8">
         <div className="w-full mx-4 sm:w-96">
           <nav className="mt-2 font-semibold">
             <NavButton onClick={() => setPageSelection('bmi')} active={pageSelection === 'bmi'}>BMI</NavButton>
