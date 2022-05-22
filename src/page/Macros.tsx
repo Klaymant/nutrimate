@@ -4,7 +4,7 @@ import Input from "../component/Input";
 import MacrosResult from "../component/Macros/MacrosResult";
 import Select, { Option } from "../component/Select";
 import { CalculatorUtil } from "../services/CalculatorUtil";
-import { ActivityLevel, Gender, PhysicalGoal } from "../types/generic";
+import { ActivityLevel, Gender, MacrosData, PhysicalGoal, UserData } from "../types/generic";
 
 const ACTIVITY_OPTIONS: Array<Option> = [
   {
