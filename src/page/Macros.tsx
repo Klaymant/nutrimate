@@ -4,7 +4,7 @@ import Input from "../component/Input";
 import MacrosResult from "../component/Macros/MacrosResult";
 import Select, { Option } from "../component/Select";
 import { CalculatorUtil } from "../services/CalculatorUtil";
-import { ActivityLevel, Gender } from "../types/generic";
+import { ActivityLevel, Gender, PhysicalGoal } from "../types/generic";
 
 const ACTIVITY_OPTIONS: Array<Option> = [
   {
@@ -25,7 +25,7 @@ const ACTIVITY_OPTIONS: Array<Option> = [
   },
   {
     label: 'Very high',
-    value: 'very-high',
+    value: 'very high',
   },
 ];
 
@@ -40,9 +40,25 @@ const GENDER_OPTIONS: Array<Option> = [
   },
 ];
 
+const PHYSICAL_GOALS: Array<Option> = [
+  {
+    label: 'Fat loss',
+    value: 'fat loss',
+  },
+  {
+    label: 'Weight maintenance',
+    value: 'weight maintenance',
+  },
+  {
+    label: 'Muscle gain',
+    value: 'muscle gain',
+  },
+];
+
 const { calculateCalories, calculateProteins, calculateFat, calculateCarbs } = CalculatorUtil;
 
 const Macros = () => {
+  const [physicalGoal, setPhysicalGoal] = useState<PhysicalGoal>('weight maintenance');
   const [gender, setGender] = useState<Gender>('female');
   const [height, setHeight] = useState(0);
   const [weight, setWeight] = useState(0);
@@ -54,8 +70,8 @@ const Macros = () => {
   const [carbsAmount, setCarbsAmount] = useState(0);
 
   const updateResult = () => {
-    const calories = calculateCalories(gender, height, weight, age, activityLevel);
-    const proteins = calculateProteins(weight);
+    const calories = calculateCalories({ gender, height, weight, age, activityLevel, physicalGoal });
+    const proteins = calculateProteins(weight, activityLevel);
     const fat = calculateFat(weight);
 
     setCaloriesAmount(calories);
@@ -68,6 +84,7 @@ const Macros = () => {
     <>
       <div className="flex flex-start">
         <div className="m-2 w-full">
+          <Select options={PHYSICAL_GOALS} value={physicalGoal} setValue={setPhysicalGoal}>Physical Goal</Select>
           <Select options={GENDER_OPTIONS} value={gender} setValue={setGender}>Gender</Select>
           <Input value={height} setValue={setHeight} type="number">Height</Input>
           <Input value={weight} setValue={setWeight} type="number">Weight</Input>
@@ -76,7 +93,12 @@ const Macros = () => {
           <Button onClick={updateResult}>Calculate</Button>
 
           {caloriesAmount !== 0 && (
-            <MacrosResult caloriesAmount={caloriesAmount} proteinsAmount={proteinsAmount} fatAmount={fatAmount} carbsAmount={carbsAmount} />
+            <MacrosResult
+              caloriesAmount={caloriesAmount}
+              proteinsAmount={proteinsAmount}
+              fatAmount={fatAmount}
+              carbsAmount={carbsAmount}
+            />
           )}
         </div>
       </div>
