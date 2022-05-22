@@ -70,14 +70,22 @@ const Macros = () => {
   const [carbsAmount, setCarbsAmount] = useState(0);
 
   const updateResult = () => {
-    const calories = calculateCalories({ gender, height, weight, age, activityLevel, physicalGoal });
-    const proteins = calculateProteins(weight, activityLevel);
+    const userData: UserData = { gender, height, weight, age, activityLevel, physicalGoal };
+    const calories = calculateCalories(userData);
+    const proteins = calculateProteins(userData);
     const fat = calculateFat(weight);
 
     setCaloriesAmount(calories);
     setProteinsAmount(proteins);
     setFatAmount(fat);
-    setCarbsAmount(calculateCarbs(calories, proteins, fat));
+
+    const macrosData: Pick<MacrosData, 'calories' | 'proteins' | 'fat'> = {
+      calories,
+      proteins,
+      fat,
+    };
+
+    setCarbsAmount(calculateCarbs(macrosData));
   };
 
   return (
