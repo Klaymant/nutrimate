@@ -13,7 +13,11 @@ const Formulas = {
 
 export const CalculationUtil = {
   calculateBmi(weight: number, height: number): number {
-    return height && weight && Math.round(weight / (height / 100) ** 2);
+    if (weight === 0 || height === 0) {
+      return 0;
+    }
+    
+    return Math.round(weight / (height / 100) ** 2);
   },
   calculateCalories(userData: UserData): number {
     return Math.round(
