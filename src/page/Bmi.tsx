@@ -2,13 +2,13 @@ import { useState } from "react";
 import BmiResult from "../component/Bmi/BmiResult";
 import Button from "../component/Button";
 import Input from "../component/Input";
-import { CalculatorUtil } from "../services/CalculatorUtil";
+import { CalculationUtil } from "../services/CalculationUtil";
 
 const Bmi = () => {
   const [weight, setWeight] = useState(0);
   const [height, setHeight] = useState(0);
   const [bmi, setBmi] = useState(0);
-  const updateBmi = () => setBmi(CalculatorUtil.getBmi(weight, height));
+  const updateBmi = () => setBmi(CalculationUtil.calculateBmi(weight, height));
 
   return (
     <>

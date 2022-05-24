@@ -3,7 +3,7 @@ import Button from "../component/Button";
 import Input from "../component/Input";
 import MacrosResult from "../component/Macros/MacrosResult";
 import Select, { Option } from "../component/Select";
-import { CalculatorUtil } from "../services/CalculatorUtil";
+import { CalculationUtil } from "../services/CalculationUtil";
 import { ActivityLevel, Gender, MacrosData, PhysicalGoal, UserData } from "../types/generic";
 
 const ACTIVITY_OPTIONS: Array<Option> = [
@@ -55,7 +55,7 @@ const PHYSICAL_GOALS: Array<Option> = [
   },
 ];
 
-const { calculateCalories, calculateProteins, calculateFat, calculateCarbs } = CalculatorUtil;
+const { calculateCalories, calculateProteins, calculateFat, calculateCarbs } = CalculationUtil;
 
 const Macros = () => {
   const [physicalGoal, setPhysicalGoal] = useState<PhysicalGoal>('weight maintenance');
