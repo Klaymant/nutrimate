@@ -1,10 +1,10 @@
-import { useState } from "react";
 import Button from "../component/Button";
 import Input from "../component/Input";
 import MacrosResult from "../component/Macros/MacrosResult";
 import Select, { Option } from "../component/Select";
 import { CalculationUtil } from "../services/CalculationUtil";
-import { ActivityLevel, Gender, MacrosData, PhysicalGoal, UserData } from "../types/generic";
+import { MacrosData, UserData } from "../types/generic";
+import { useUserData } from "../providers/UserProvider";
 
 const ACTIVITY_OPTIONS: Array<Option> = [
   {
@@ -58,26 +58,28 @@ const PHYSICAL_GOALS: Array<Option> = [
 const { calculateCalories, calculateProteins, calculateFat, calculateCarbs } = CalculationUtil;
 
 const Macros = () => {
-  const [physicalGoal, setPhysicalGoal] = useState<PhysicalGoal>('weight maintenance');
-  const [gender, setGender] = useState<Gender>('female');
-  const [height, setHeight] = useState(0);
-  const [weight, setWeight] = useState(0);
-  const [age, setAge] = useState(0);
-  const [activityLevel, setActivityLevel] = useState<ActivityLevel>('mid');
-  const [caloriesAmount, setCaloriesAmount] = useState(0);
-  const [proteinsAmount, setProteinsAmount] = useState(0);
-  const [fatAmount, setFatAmount] = useState(0);
-  const [carbsAmount, setCarbsAmount] = useState(0);
+  const {
+    height,
+    weight,
+    physicalGoal,
+    gender,
+    age,
+    activityLevel,
+    caloriesAmount,
+    proteinsAmount,
+    fatAmount,
+    carbsAmount,
+  } = useUserData();
 
   const updateResult = () => {
-    const userData: UserData = { gender, height, weight, age, activityLevel, physicalGoal };
+    const userData: UserData = { gender: gender.value, height: height.value, weight: weight.value, age: age.value, activityLevel: activityLevel.value, physicalGoal: physicalGoal.value };
     const calories = calculateCalories(userData);
     const proteins = calculateProteins(userData);
-    const fat = calculateFat(weight);
+    const fat = calculateFat(weight.value);
 
-    setCaloriesAmount(calories);
-    setProteinsAmount(proteins);
-    setFatAmount(fat);
+    caloriesAmount.setValue(calories);
+    proteinsAmount.setValue(proteins);
+    fatAmount.setValue(fat);
 
     const macrosData: Pick<MacrosData, 'calories' | 'proteins' | 'fat'> = {
       calories,
@@ -85,27 +87,27 @@ const Macros = () => {
       fat,
     };
 
-    setCarbsAmount(calculateCarbs(macrosData));
+    carbsAmount.setValue(calculateCarbs(macrosData));
   };
 
   return (
     <>
       <div className="flex flex-start">
         <div className="m-2 w-full">
-          <Select options={PHYSICAL_GOALS} value={physicalGoal} setValue={setPhysicalGoal}>Physical Goal</Select>
-          <Select options={GENDER_OPTIONS} value={gender} setValue={setGender}>Gender</Select>
-          <Input value={height} setValue={setHeight} type="number">Height</Input>
-          <Input value={weight} setValue={setWeight} type="number">Weight</Input>
-          <Input value={age} setValue={setAge} type="number">Age</Input>
-          <Select options={ACTIVITY_OPTIONS} value={activityLevel} setValue={setActivityLevel}>Activity level</Select>
+          <Select options={PHYSICAL_GOALS} value={physicalGoal.value} setValue={physicalGoal.setValue}>Physical Goal</Select>
+          <Select options={GENDER_OPTIONS} value={gender.value} setValue={gender.setValue}>Gender</Select>
+          <Input value={height.value} setValue={height.setValue} type="number">Height</Input>
+          <Input value={weight.value} setValue={weight.setValue} type="number">Weight</Input>
+          <Input value={age.value} setValue={age.setValue} type="number">Age</Input>
+          <Select options={ACTIVITY_OPTIONS} value={activityLevel.value} setValue={activityLevel.setValue}>Activity level</Select>
           <Button onClick={updateResult}>Calculate</Button>
 
-          {caloriesAmount !== 0 && (
+          {caloriesAmount.value !== 0 && (
             <MacrosResult
-              caloriesAmount={caloriesAmount}
-              proteinsAmount={proteinsAmount}
-              fatAmount={fatAmount}
-              carbsAmount={carbsAmount}
+              caloriesAmount={caloriesAmount.value}
+              proteinsAmount={proteinsAmount.value}
+              fatAmount={fatAmount.value}
+              carbsAmount={carbsAmount.value}
             />
           )}
         </div>
