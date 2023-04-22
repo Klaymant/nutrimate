@@ -1,44 +1,64 @@
 import { createContext, useContext } from "react";
-import { ActivityLevel, Gender, PhysicalGoal, MacrosData, UserData } from "../types/generic";
+import { ActivityLevel, Gender, PhysicalGoal } from "../types/generic";
 import { useContextState } from "../hook/UseContextState";
 import { State } from "../types/State";
 import { CalculationUtil } from "../services/CalculationUtil";
+import { Macros, MacrosData } from "../types/UserData";
+import { UserDataStorageManager } from "../services/DataStorageManager";
 
 const UserDataContext = createContext({} as UserDataContextValues);
 
 export const UserDataProvider = ({ children }: Props) => {
-  const weight = useContextState(0);
-  const height = useContextState(0);
-  const physicalGoal = useContextState<PhysicalGoal>('weight maintenance');
-  const gender = useContextState<Gender>('female');
-  const age = useContextState(0);
-  const activityLevel = useContextState<ActivityLevel>('mid');
-  const caloriesAmount = useContextState(0);
-  const proteinsAmount = useContextState(0);
-  const fatAmount = useContextState(0);
-  const carbsAmount = useContextState(0);
-  const bmi = useContextState(0);
+  const savedUserData = UserDataStorageManager.retrieve();
+  const weight = useContextState(savedUserData?.weight || 0);
+  const height = useContextState(savedUserData?.height || 0);
+  const physicalGoal = useContextState<PhysicalGoal>(savedUserData?.physicalGoal || 'weight maintenance');
+  const gender = useContextState<Gender>(savedUserData?.gender || 'female');
+  const age = useContextState(savedUserData?.age || 0);
+  const activityLevel = useContextState<ActivityLevel>(savedUserData?.activityLevel || 'mid');
+  const caloriesAmount = useContextState(savedUserData?.caloriesAmount || 0);
+  const proteinsAmount = useContextState(savedUserData?.proteinsAmount || 0);
+  const fatAmount = useContextState(savedUserData?.fatAmount || 0);
+  const carbsAmount = useContextState(savedUserData?.carbsAmount || 0);
+  const bmi = useContextState(savedUserData?.bmi || 0);
+
+  const updateStoredUserData = () => {
+    UserDataStorageManager.update({
+      weight: weight.value,
+      height: height.value,
+      physicalGoal: physicalGoal.value,
+      gender: gender.value,
+      age: age.value,
+      activityLevel: activityLevel.value,
+    });
+  }
 
   const updateMacros = () => {
-    const userData: UserData = { gender: gender.value, height: height.value, weight: weight.value, age: age.value, activityLevel: activityLevel.value, physicalGoal: physicalGoal.value };
-    const calories = CalculationUtil.calculateCalories(userData);
-    const proteins = CalculationUtil.calculateProteins(userData);
-    const fat = CalculationUtil.calculateFat(weight.value);
+    const userData: MacrosData = { gender: gender.value, height: height.value, weight: weight.value, age: age.value, activityLevel: activityLevel.value, physicalGoal: physicalGoal.value };
+    const newCaloriesAmount = CalculationUtil.calculateCalories(userData);
+    const newProteinsAmount = CalculationUtil.calculateProteins(userData);
+    const newFatAmount = CalculationUtil.calculateFat(weight.value);
 
-    caloriesAmount.setValue(calories);
-    proteinsAmount.setValue(proteins);
-    fatAmount.setValue(fat);
+    caloriesAmount.setValue(newCaloriesAmount);
+    proteinsAmount.setValue(newProteinsAmount);
+    fatAmount.setValue(newFatAmount);
 
-    const macrosData: Pick<MacrosData, 'calories' | 'proteins' | 'fat'> = {
-      calories,
-      proteins,
-      fat,
+    const macrosData: Pick<Macros, 'caloriesAmount' | 'proteinsAmount' | 'fatAmount'> = {
+      caloriesAmount: newCaloriesAmount,
+      proteinsAmount: newProteinsAmount,
+      fatAmount: newFatAmount,
     };
 
     carbsAmount.setValue(CalculationUtil.calculateCarbs(macrosData));
+    updateStoredUserData();
   };
 
-  const updateBmi = () => bmi.setValue(CalculationUtil.calculateBmi(weight.value, height.value));
+  const updateBmi = () => {
+    const newBmi = CalculationUtil.calculateBmi(weight.value, height.value);
+
+    bmi.setValue(newBmi);
+    updateStoredUserData();
+  }
 
   return (
     <UserDataContext.Provider
