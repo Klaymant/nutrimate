@@ -2,8 +2,6 @@ import Button from "../component/Button";
 import Input from "../component/Input";
 import MacrosResult from "../component/Macros/MacrosResult";
 import Select, { Option } from "../component/Select";
-import { CalculationUtil } from "../services/CalculationUtil";
-import { MacrosData, UserData } from "../types/generic";
 import { useUserData } from "../providers/UserProvider";
 
 const ACTIVITY_OPTIONS: Array<Option> = [
@@ -55,8 +53,6 @@ const PHYSICAL_GOALS: Array<Option> = [
   },
 ];
 
-const { calculateCalories, calculateProteins, calculateFat, calculateCarbs } = CalculationUtil;
-
 const Macros = () => {
   const {
     height,
@@ -69,26 +65,8 @@ const Macros = () => {
     proteinsAmount,
     fatAmount,
     carbsAmount,
+    updateMacros,
   } = useUserData();
-
-  const updateResult = () => {
-    const userData: UserData = { gender: gender.value, height: height.value, weight: weight.value, age: age.value, activityLevel: activityLevel.value, physicalGoal: physicalGoal.value };
-    const calories = calculateCalories(userData);
-    const proteins = calculateProteins(userData);
-    const fat = calculateFat(weight.value);
-
-    caloriesAmount.setValue(calories);
-    proteinsAmount.setValue(proteins);
-    fatAmount.setValue(fat);
-
-    const macrosData: Pick<MacrosData, 'calories' | 'proteins' | 'fat'> = {
-      calories,
-      proteins,
-      fat,
-    };
-
-    carbsAmount.setValue(calculateCarbs(macrosData));
-  };
 
   return (
     <>
@@ -100,7 +78,7 @@ const Macros = () => {
           <Input value={weight.value} setValue={weight.setValue} type="number">Weight</Input>
           <Input value={age.value} setValue={age.setValue} type="number">Age</Input>
           <Select options={ACTIVITY_OPTIONS} value={activityLevel.value} setValue={activityLevel.setValue}>Activity level</Select>
-          <Button onClick={updateResult}>Calculate</Button>
+          <Button onClick={updateMacros}>Calculate</Button>
 
           {caloriesAmount.value !== 0 && (
             <MacrosResult
