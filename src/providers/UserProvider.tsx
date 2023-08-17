@@ -6,7 +6,7 @@ import { CalculationUtil } from "../services/CalculationUtil";
 import { Macros, MacrosData } from "../types/UserData";
 import { UserDataStorageManager } from "../services/DataStorageManager";
 
-const UserDataContext = createContext({} as UserDataContextValues);
+const UserDataContext = createContext<UserDataContextValues | null>(null);
 
 export const UserDataProvider = ({ children }: Props) => {
   const savedUserData = UserDataStorageManager.retrieve();
@@ -58,7 +58,7 @@ export const UserDataProvider = ({ children }: Props) => {
 
     bmi.setValue(newBmi);
     updateStoredUserData();
-  }
+  };
 
   return (
     <UserDataContext.Provider
