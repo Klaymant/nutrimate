@@ -1,7 +1,7 @@
 import Button from "../component/Button";
 import Input from "../component/Input";
 import MacrosResult from "../component/Macros/MacrosResult";
-import Select, { Option } from "../component/Select";
+import { Select, Option } from "../component/Select";
 import { useUserData } from "../providers/UserProvider";
 
 const ACTIVITY_OPTIONS: Array<Option> = [
@@ -72,12 +72,12 @@ const Macros = () => {
     <>
       <div className="flex flex-start">
         <div className="m-2 w-full">
-          <Select options={PHYSICAL_GOALS} value={physicalGoal.value} setValue={physicalGoal.setValue}>Physical Goal</Select>
-          <Select options={GENDER_OPTIONS} value={gender.value} setValue={gender.setValue}>Gender</Select>
+          <Select options={PHYSICAL_GOALS} setValue={physicalGoal.setValue} id="physical goal">Physical Goal</Select>
+          <Select options={GENDER_OPTIONS} setValue={gender.setValue} id="test">Gender</Select>
           <Input value={height.value} setValue={height.setValue} type="number">Height</Input>
           <Input value={weight.value} setValue={weight.setValue} type="number">Weight</Input>
           <Input value={age.value} setValue={age.setValue} type="number">Age</Input>
-          <Select options={ACTIVITY_OPTIONS} value={activityLevel.value} setValue={activityLevel.setValue}>Activity level</Select>
+          <Select options={ACTIVITY_OPTIONS} setValue={activityLevel.setValue} id="activity level">Activity level</Select>
           <Button onClick={updateMacros}>Calculate</Button>
 
           {caloriesAmount.value !== 0 && (
