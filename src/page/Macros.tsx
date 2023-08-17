@@ -3,6 +3,9 @@ import Input from "../component/Input";
 import MacrosResult from "../component/Macros/MacrosResult";
 import { Select, Option } from "../component/Select";
 import { useUserData } from "../providers/UserProvider";
+import marsIcon from '../assets/img/mars.png';
+import feminineIcon from '../assets/img/femenine.png';
+import { CardSelect } from "../component/CardSelect";
 
 const ACTIVITY_OPTIONS: Array<Option> = [
   {
@@ -53,6 +56,21 @@ const PHYSICAL_GOALS: Array<Option> = [
   },
 ];
 
+const GENDER_ITEMS = [
+  {
+    label: 'Female',
+    icon: feminineIcon,
+    alt: 'Feminine icon',
+    choice: 'female',
+  },
+  {
+    label: 'Male',
+    icon: marsIcon,
+    alt: 'Mars icon',
+    choice: 'male',
+  },
+];
+
 const Macros = () => {
   const {
     height,
@@ -73,7 +91,18 @@ const Macros = () => {
       <div className="flex flex-start">
         <div className="m-2 w-full">
           <Select options={PHYSICAL_GOALS} setValue={physicalGoal.setValue} id="physical goal">Physical Goal</Select>
-          <Select options={GENDER_OPTIONS} setValue={gender.setValue} id="test">Gender</Select>
+          <CardSelect value={gender.value} setValue={gender.setValue} title="Gender">
+              {GENDER_ITEMS.map((item) => (
+                <CardSelect.Item
+                  key={item.label}
+                  icon={item.icon}
+                  alt={item.alt}
+                  choice={item.choice}
+                >
+                  {item.label}
+                </CardSelect.Item>
+              ))}
+            </CardSelect>
           <Input value={height.value} setValue={height.setValue} type="number">Height</Input>
           <Input value={weight.value} setValue={weight.setValue} type="number">Weight</Input>
           <Input value={age.value} setValue={age.setValue} type="number">Age</Input>
