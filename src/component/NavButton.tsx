@@ -5,8 +5,9 @@ const getActiveClasses = (active: boolean) => active ? 'bg-cornflower-blue borde
 const NavButton = ({ children, active, onClick }: NavButtonProps) => (
   <button
     type="button"
-    className={`font-semibold ${getActiveClasses(active)} p-2 m-1 mx-2 outline-none rounded-xl`}
+    className={`font-semibold ${getActiveClasses(active)} p-2 m-1 mx-2 rounded-xl`}
     onClick={onClick}
+    tabIndex={0}
   >
     {children}
   </button>
