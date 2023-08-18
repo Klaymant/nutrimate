@@ -1,62 +1,43 @@
 import Button from "../component/Button";
 import Input from "../component/Input";
 import MacrosResult from "../component/Macros/MacrosResult";
-import { Select, Option } from "../component/Select";
 import { useUserData } from "../providers/UserProvider";
 import marsIcon from '../assets/img/mars.png';
 import feminineIcon from '../assets/img/femenine.png';
-import { CardSelect } from "../component/CardSelect";
+import scalesIcon from '../assets/img/scales.png';
+import measurementIcon from '../assets/img/measurement.png';
+import bicepsIcon from '../assets/img/muscle.png';
+import sofaIcon from '../assets/img/sofa.png';
+import walkIcon from '../assets/img/walk.png';
+import runningIcon from '../assets/img/running.png';
+import sprintIcon from '../assets/img/race.png';
+import weightLiftingIcon from '../assets/img/weight-lifting.png';
 
-const ACTIVITY_OPTIONS: Array<Option> = [
-  {
-    label: 'None',
-    value: 'none',
-  },
-  {
-    label: 'Low',
-    value: 'low',
-  },
-  {
-    label: 'Mid',
-    value: 'mid',
-  },
-  {
-    label: 'High',
-    value: 'high',
-  },
-  {
-    label: 'Very high',
-    value: 'very high',
-  },
-];
+import { CardSelect, CardSelectOptions } from "../component/CardSelect";
+import { ActivityLevel, Gender, PhysicalGoal } from "../types/generic";
 
-const GENDER_OPTIONS: Array<Option> = [
-  {
-    label: 'Female',
-    value: 'female',
-  },
-  {
-    label: 'Male',
-    value: 'male',
-  },
-];
-
-const PHYSICAL_GOALS: Array<Option> = [
+const PHYSICAL_GOALS_ITEMS: CardSelectOptions<PhysicalGoal>[] = [
   {
     label: 'Fat loss',
-    value: 'fat loss',
+    icon: scalesIcon,
+    alt: 'Scales icon',
+    choice: 'fat loss',
   },
   {
     label: 'Weight maintenance',
-    value: 'weight maintenance',
+    icon: measurementIcon,
+    alt: 'Measurement icon',
+    choice: 'weight maintenance',
   },
   {
     label: 'Muscle gain',
-    value: 'muscle gain',
+    icon: bicepsIcon,
+    alt: 'Muscle gain icon',
+    choice: 'muscle gain',
   },
 ];
 
-const GENDER_ITEMS = [
+const GENDER_ITEMS: CardSelectOptions<Gender>[] = [
   {
     label: 'Female',
     icon: feminineIcon,
@@ -68,6 +49,39 @@ const GENDER_ITEMS = [
     icon: marsIcon,
     alt: 'Mars icon',
     choice: 'male',
+  },
+];
+
+const ACTIVITY_LEVEL_ITEMS: CardSelectOptions<ActivityLevel>[] = [
+  {
+    label: 'None',
+    icon: sofaIcon,
+    alt: 'sofa icon',
+    choice: 'none',
+  },
+  {
+    label: 'Low',
+    icon: walkIcon,
+    alt: 'walk icon',
+    choice: 'low',
+  },
+  {
+    label: 'Mid',
+    icon: runningIcon,
+    alt: 'running icon',
+    choice: 'mid',
+  },
+  {
+    label: 'High',
+    icon: sprintIcon,
+    alt: 'race icon',
+    choice: 'high',
+  },
+  {
+    label: 'Very high',
+    icon: weightLiftingIcon,
+    alt: 'weight lifting icon',
+    choice: 'very high',
   },
 ];
 
@@ -90,11 +104,14 @@ const Macros = () => {
     <>
       <div className="flex flex-start">
         <div className="m-2 w-full">
-          <Select options={PHYSICAL_GOALS} setValue={physicalGoal.setValue} id="physical goal">Physical Goal</Select>
-          <CardSelect value={gender.value} setValue={gender.setValue} title="Gender">
-              {GENDER_ITEMS.map((item) => (
+          <Input value={height.value} setValue={height.setValue} type="number">Height</Input>
+          <Input value={weight.value} setValue={weight.setValue} type="number">Weight</Input>
+          <Input value={age.value} setValue={age.setValue} type="number">Age</Input>
+          <CardSelect value={physicalGoal.value} setValue={physicalGoal.setValue} title="Physical Goal">
+              {PHYSICAL_GOALS_ITEMS.map((item, index) => (
                 <CardSelect.Item
                   key={item.label}
+                  index={index}
                   icon={item.icon}
                   alt={item.alt}
                   choice={item.choice}
@@ -103,10 +120,32 @@ const Macros = () => {
                 </CardSelect.Item>
               ))}
             </CardSelect>
-          <Input value={height.value} setValue={height.setValue} type="number">Height</Input>
-          <Input value={weight.value} setValue={weight.setValue} type="number">Weight</Input>
-          <Input value={age.value} setValue={age.setValue} type="number">Age</Input>
-          <Select options={ACTIVITY_OPTIONS} setValue={activityLevel.setValue} id="activity level">Activity level</Select>
+          <CardSelect value={gender.value} setValue={gender.setValue} title="Gender">
+              {GENDER_ITEMS.map((item, index) => (
+                <CardSelect.Item
+                  key={item.label}
+                  index={index}
+                  icon={item.icon}
+                  alt={item.alt}
+                  choice={item.choice}
+                >
+                  {item.label}
+                </CardSelect.Item>
+              ))}
+          </CardSelect>
+          <CardSelect value={activityLevel.value} setValue={activityLevel.setValue} title="Activity level">
+              {ACTIVITY_LEVEL_ITEMS.map((item, index) => (
+                <CardSelect.Item
+                  key={item.label}
+                  index={index}
+                  icon={item.icon}
+                  alt={item.alt}
+                  choice={item.choice}
+                >
+                  {item.label}
+                </CardSelect.Item>
+              ))}
+          </CardSelect>
           <Button onClick={updateMacros}>Calculate</Button>
 
           {caloriesAmount.value !== 0 && (

@@ -9,7 +9,9 @@ export const CardSelect = <T,>({ children, value, setValue, title = null }: Prop
     return (
         <>
             {title && <p>{title}</p>}
-            <ul className="flex flex-wrap gap-4 ml-4">
+            <ul
+                className="flex flex-wrap gap-4 ml-4 leading-none font-semibold my-4"
+            >
                 <CardContext.Provider value={{ value, setValue }}>
                     {children}
                 </CardContext.Provider>
@@ -21,20 +23,31 @@ CardSelect.Item = (props: CardSelectItemProps) => {
     return <CardSelectItem {...props} />;
 }
 
-const CardSelectItem = ({ children, icon, alt, choice }: CardSelectItemProps) => {
+const CardSelectItem = ({ children, icon, alt, choice, index }: CardSelectItemProps) => {
     const { value, setValue } = useContext(CardContext);
     const handleChange = () => {
         setValue(choice);
     };
-    const baseClasses = 'flex justify-center items-center rounded-xl p-4 flex-col w-16 h-16 cursor-pointer';
+    const onKeyDown = (keyEvent: any) => {
+        if (keyEvent.key === 'Enter') {
+            setValue(choice);
+        }
+    };
+    const isSelected = value === choice;
+    const baseClasses = 'flex justify-center items-center rounded-xl p-4 text-center flex-col w-28 h-28 cursor-pointer';
     const unselectedClasses = 'bg-gray-300 text-black';
     const selectedClasses = 'bg-cornflower-blue text-white';
-    const itemClasses = [baseClasses, value === choice ? selectedClasses : unselectedClasses].join(' ');
+    const itemClasses = [baseClasses, isSelected ? selectedClasses : unselectedClasses].join(' ');
 
     return (
         <>
-            <li onClick={handleChange} className={itemClasses}>
-                <img src={icon} alt={alt} className="h-4 w-4" />
+            <li
+                onClick={handleChange}
+                className={itemClasses}
+                tabIndex={0}
+                onKeyDown={onKeyDown}
+            >
+                <img src={icon} alt={alt} className="h-6 w-6 mb-2" />
                 { children }
             </li>
         </>
@@ -50,7 +63,15 @@ type Props<T> = {
 
 type CardSelectItemProps = {
     children: ReactNode;
+    index: number;
     icon: string;
     alt: string;
     choice: string;
+};
+
+export type CardSelectOptions<T> = {
+    label: string;
+    icon: string;
+    alt: string;
+    choice: T;
 };
