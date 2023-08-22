@@ -97,7 +97,13 @@ const Macros = () => {
                 </CardSelect.Item>
               ))}
           </CardSelect>
-          <RangeInput options={ACTIVITY_LEVEL_MAPPER.map((_, index) => String(index))} label="Activity level" value={activityLevel.value} setValue={activityLevel.setValue} />
+          <RangeInput
+            options={ACTIVITY_LEVEL_MAPPER.map((_, index) => String(index))}
+            label="Activity level"
+            value={activityLevel.value}
+            setValue={activityLevel.setValue}
+            valueDisplay={(value) => <p>{ACTIVITY_LEVEL_MAPPER[Number(value)].message}</p>}
+          />
           <Button onClick={updateMacros}>Calculate</Button>
 
           {caloriesAmount.value !== 0 && (

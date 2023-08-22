@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 
-export const RangeInput = <T,>({ label, options, value, setValue }: Props<T>) => {
+export const RangeInput = <T,>({ label, options, value, setValue, valueDisplay }: Props<T>) => {
     const lastOption = options[options.length - 1];
     const nbSteps = +lastOption / options.length - 1;
     const onChange = (event: any) => {
@@ -27,7 +27,7 @@ export const RangeInput = <T,>({ label, options, value, setValue }: Props<T>) =>
                         <option value={option} label={option} key={option} />
                     ))}
                 </datalist>
-                <p>{String(value)}</p>
+                {valueDisplay && valueDisplay(value)}
             </div>
         </>
     );
@@ -38,4 +38,5 @@ type Props<T> = {
     options: string[];
     value: T;
     setValue: Dispatch<SetStateAction<T>>;
+    valueDisplay?: (value: T) => JSX.Element;
 };
