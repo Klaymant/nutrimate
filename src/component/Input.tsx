@@ -16,7 +16,14 @@ const Input = ({ children, value, type = 'text', setValue }: InputProps) => {
     <>
       <div className="my-2">
         <label className={labelClasses}>{children}</label>
-        <input type={type} value={value} onChange={onChange} onFocus={focus} onBlur={blur} className="rounded border-2 border-grey-600 focus:border-cornflower-blue pl-2 py-1 outline-none w-full" />
+        <input
+          type={type}
+          value={value}
+          onChange={onChange}
+          onFocus={focus}
+          onBlur={blur}
+          className="rounded border-2 border-grey-600 focus:border-cornflower-blue pl-2 py-1 outline-none w-full"
+        />
       </div>
     </>
   )
