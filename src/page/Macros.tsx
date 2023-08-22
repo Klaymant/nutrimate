@@ -7,14 +7,11 @@ import feminineIcon from '../assets/img/femenine.png';
 import scalesIcon from '../assets/img/scales.png';
 import measurementIcon from '../assets/img/measurement.png';
 import bicepsIcon from '../assets/img/muscle.png';
-import sofaIcon from '../assets/img/sofa.png';
-import walkIcon from '../assets/img/walk.png';
-import runningIcon from '../assets/img/running.png';
-import sprintIcon from '../assets/img/race.png';
-import weightLiftingIcon from '../assets/img/weight-lifting.png';
 
 import { CardSelect, CardSelectOptions } from "../component/CardSelect";
-import { ActivityLevel, Gender, PhysicalGoal } from "../types/generic";
+import { Gender, PhysicalGoal } from "../types/generic";
+import { RangeInput } from "../component/RangeInput";
+import { ACTIVITY_LEVEL_MAPPER } from "../services/UserDataManager";
 
 const PHYSICAL_GOALS_ITEMS: CardSelectOptions<PhysicalGoal>[] = [
   {
@@ -49,39 +46,6 @@ const GENDER_ITEMS: CardSelectOptions<Gender>[] = [
     icon: marsIcon,
     alt: 'Mars icon',
     choice: 'male',
-  },
-];
-
-const ACTIVITY_LEVEL_ITEMS: CardSelectOptions<ActivityLevel>[] = [
-  {
-    label: 'None',
-    icon: sofaIcon,
-    alt: 'sofa icon',
-    choice: 'none',
-  },
-  {
-    label: 'Low',
-    icon: walkIcon,
-    alt: 'walk icon',
-    choice: 'low',
-  },
-  {
-    label: 'Mid',
-    icon: runningIcon,
-    alt: 'running icon',
-    choice: 'mid',
-  },
-  {
-    label: 'High',
-    icon: sprintIcon,
-    alt: 'race icon',
-    choice: 'high',
-  },
-  {
-    label: 'Very high',
-    icon: weightLiftingIcon,
-    alt: 'weight lifting icon',
-    choice: 'very high',
   },
 ];
 
@@ -133,19 +97,7 @@ const Macros = () => {
                 </CardSelect.Item>
               ))}
           </CardSelect>
-          <CardSelect value={activityLevel.value} setValue={activityLevel.setValue} title="Activity level">
-              {ACTIVITY_LEVEL_ITEMS.map((item, index) => (
-                <CardSelect.Item
-                  key={item.label}
-                  index={index}
-                  icon={item.icon}
-                  alt={item.alt}
-                  choice={item.choice}
-                >
-                  {item.label}
-                </CardSelect.Item>
-              ))}
-          </CardSelect>
+          <RangeInput options={ACTIVITY_LEVEL_MAPPER.map((_, index) => String(index))} label="Activity level" value={activityLevel.value} setValue={activityLevel.setValue} />
           <Button onClick={updateMacros}>Calculate</Button>
 
           {caloriesAmount.value !== 0 && (

@@ -5,6 +5,7 @@ import { State } from "../types/State";
 import { CalculationUtil } from "../services/CalculationUtil";
 import { Macros, MacrosData } from "../types/UserData";
 import { UserDataStorageManager } from "../services/DataStorageManager";
+import { UserDataManager } from "../services/UserDataManager";
 
 const UserDataContext = createContext<UserDataContextValues | null>(null);
 
@@ -15,7 +16,7 @@ export const UserDataProvider = ({ children }: Props) => {
   const physicalGoal = useContextState<PhysicalGoal>(savedUserData?.physicalGoal || 'weight maintenance');
   const gender = useContextState<Gender>(savedUserData?.gender || 'female');
   const age = useContextState(savedUserData?.age || 0);
-  const activityLevel = useContextState<ActivityLevel>(savedUserData?.activityLevel || 'mid');
+  const activityLevel = useContextState<ActivityLevel>(savedUserData?.activityLevel || '0');
   const caloriesAmount = useContextState(savedUserData?.caloriesAmount || 0);
   const proteinsAmount = useContextState(savedUserData?.proteinsAmount || 0);
   const fatAmount = useContextState(savedUserData?.fatAmount || 0);
@@ -29,12 +30,12 @@ export const UserDataProvider = ({ children }: Props) => {
       physicalGoal: physicalGoal.value,
       gender: gender.value,
       age: age.value,
-      activityLevel: activityLevel.value,
+      activityLevel: UserDataManager.getActivityLevelLabel(activityLevel.value),
     });
-  }
+  };
 
   const updateMacros = () => {
-    const userData: MacrosData = { gender: gender.value, height: height.value, weight: weight.value, age: age.value, activityLevel: activityLevel.value, physicalGoal: physicalGoal.value };
+    const userData: MacrosData = { gender: gender.value, height: height.value, weight: weight.value, age: age.value, activityLevel: UserDataManager.getActivityLevelLabel(activityLevel.value), physicalGoal: physicalGoal.value };
     const newCaloriesAmount = CalculationUtil.calculateCalories(userData);
     const newProteinsAmount = CalculationUtil.calculateProteins(userData);
     const newFatAmount = CalculationUtil.calculateFat(weight.value);
@@ -86,9 +87,8 @@ export const UserDataProvider = ({ children }: Props) => {
 export const useUserData = () => {
   const context = useContext(UserDataContext);
 
-  if (!context) {
+  if (!context)
     throw new Error('useUserData must be used within UserDataProvider');
-  }
 
   return context;
 }
