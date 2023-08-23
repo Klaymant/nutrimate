@@ -1,7 +1,7 @@
 input[type="range"] {
   font-size: 1.5rem;
   width: 12.5em;
-  color: var(--cornflower-blue);
+  color: var(--primary);
   --thumb-height: 1.125em;
   --track-height: 0.125em;
   --track-color: rgba(0, 0, 0, 0.2);

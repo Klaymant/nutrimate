@@ -9,7 +9,7 @@ type ButtonProps = {
 };
 
 const Button = ({ children, type = "button", onClick }: ButtonProps) => (
-  <button type={type} onClick={onClick} className="bg-mint-green rounded p-2 hover:bg-opacity-80">
+  <button type={type} onClick={onClick} className="bg-secondary rounded p-2 hover:bg-opacity-80">
     {children}
   </button>
 );

@@ -1,4 +1,4 @@
-type BmiColor = 'red-500' | 'mint-green';
+type BmiColor = 'red-500' | 'secondary';
 type BmiItem = { value: number; color: BmiColor, weightStatus: WeightStatus };
 type WeightStatus = 'obesity' | 'overweight' | 'normal weight' | 'underweight';
 
@@ -15,7 +15,7 @@ export const BMI: Array<BmiItem> = [
   },
   {
     value: 18,
-    color: 'mint-green',
+    color: 'secondary',
     weightStatus: 'normal weight',
   },
   {

@@ -6,7 +6,7 @@ type Props = {
 };
 
 const MacrosResult = ({ caloriesAmount, proteinsAmount, fatAmount, carbsAmount }: Props) => (
-  <section className="mt-8 mb-8 p-4 flex justify-evenly bg-cornflower-blue bg-opacity-70 rounded">
+  <section className="mt-8 mb-8 p-4 flex justify-evenly bg-primary bg-opacity-70 rounded">
     <div>
       <div>Calories :</div>
       <div>Proteins :</div>

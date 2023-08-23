@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-const getActiveClasses = (active: boolean) => active ? 'bg-cornflower-blue border-cornflower-blue text-white' : 'bg-gray-300 text-black';
+const getActiveClasses = (active: boolean) => active ? 'bg-primary border-primary text-white' : 'bg-gray-300 text-black';
 
 const NavButton = ({ children, active, onClick }: NavButtonProps) => (
   <button

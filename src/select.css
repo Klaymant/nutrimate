@@ -65,7 +65,7 @@ select,
     justify-self: end;
     width: 0.8em;
     height: 0.5em;
-    background-color: var(--cornflower-blue);
+    background-color: var(--primary);
     clip-path: polygon(100% 0%, 0 0%, 50% 100%);
 }
 
@@ -76,7 +76,7 @@ select,
     left: -1px;
     right: -1px;
     bottom: -1px;
-    border: 2px solid var(--cornflower-blue);
+    border: 2px solid var(--primary);
     border-radius: inherit;
 }
 

@@ -6,6 +6,7 @@
   --mint-green: #48CFB7;
   --cornflower-blue: #6495ED;
   --cream: #FFFCF6;
+  --primary: var(--cornflower-blue);
 }
 
 body {

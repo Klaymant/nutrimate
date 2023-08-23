@@ -17,7 +17,7 @@ const App = () => {
               <NavButton onClick={() => setPageSelection('macro')} active={pageSelection === 'macro'}>Macros</NavButton>
             </nav>
 
-            <section className="rounded-xl bg-cream-dark mt-4 p-4">
+            <section className="rounded-xl bg-background-dark mt-4 p-4">
               {pageSelection === 'bmi' && <Bmi />}
               {pageSelection === 'macro' && <Macros />}
             </section>

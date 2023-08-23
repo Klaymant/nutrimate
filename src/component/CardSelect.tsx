@@ -36,7 +36,7 @@ const CardSelectItem = ({ children, icon, alt, choice, index }: CardSelectItemPr
     const isSelected = value === choice;
     const baseClasses = 'flex justify-center items-center rounded-xl p-4 text-center flex-col w-28 h-28 cursor-pointer';
     const unselectedClasses = 'bg-gray-300 text-black';
-    const selectedClasses = 'bg-cornflower-blue text-white';
+    const selectedClasses = 'bg-primary text-white';
     const itemClasses = [baseClasses, isSelected ? selectedClasses : unselectedClasses].join(' ');
 
     return (
