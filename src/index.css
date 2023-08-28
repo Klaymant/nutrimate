@@ -2,33 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --mint-green: #48CFB7;
-  --cornflower-blue: #6495ED;
-  --cream: #FFFCF6;
-  --primary: var(--cornflower-blue);
-}
+@media screen, print {
+  :root {
+    --mint-green: #48CFB7;
+    --cornflower-blue: #6495ED;
+    --cream: #FFFCF6;
+    --primary: var(--cornflower-blue);
+  }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: var(--cream);
-}
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--cream);
+  }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
 
-/* Learn about this solution to creating custom select styles:
-@link https://moderncss.dev/custom-select-styles-with-pure-css/ */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+  nav ul li {
+    display: inline;
+  }
 }
