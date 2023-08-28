@@ -11,11 +11,11 @@ const App = () => {
         <BrowserRouter>
           <div className="flex justify-center mb-8">
             <div className="w-full mx-4 sm:w-96">
-              <nav className="mt-2 font-semibold">
+              <nav className="mt-4 font-semibold">
                 <Menu />
               </nav>
 
-              <section className="rounded-xl bg-background-dark mt-4 p-4">
+              <section className="rounded-md bg-background-dark mt-4 p-2">
                 <Routes>
                   {routes.map((route, index) => <Route key={index} {...route} />)}
                 </Routes>
