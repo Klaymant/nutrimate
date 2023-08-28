@@ -1,22 +1,27 @@
 import { ReactNode } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const getActiveClasses = (active: boolean) => active ? 'bg-primary border-primary text-white' : 'bg-gray-300 text-black';
 
-const NavButton = ({ children, active, onClick }: NavButtonProps) => (
-  <button
-    type="button"
-    className={`font-semibold ${getActiveClasses(active)} p-2 m-1 mx-2 rounded-xl`}
-    onClick={onClick}
-    tabIndex={0}
-  >
-    {children}
-  </button>
-);
+const NavButton = ({ children, path }: NavButtonProps) => {
+  const location = useLocation();
+  const isActive = location.pathname === path;
+  
+  return (
+    <li>
+      <Link
+        to={path}
+        className={`font-semibold ${getActiveClasses(isActive)} p-1.5 mr-2 rounded-md`}
+      >
+        {children}
+      </Link>
+    </li>
+  );
+};
 
 type NavButtonProps = {
   children: ReactNode;
-  active: boolean;
-  onClick?: () => void;
+  path: string;
 };
 
 export default NavButton;
