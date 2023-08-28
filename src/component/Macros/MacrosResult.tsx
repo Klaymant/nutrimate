@@ -3,8 +3,8 @@ const MacroResultElement = ({ label, result, unity, backgroundColor }: MacroResu
 
   return (
     <div className={[baseClasses, backgroundColor].join(" ")}>
-      <div>{label}</div>
-      <div className="text-white">{result}{unity}</div>
+      <p>{label}</p>
+      <p className="text-white">{result}{unity}</p>
     </div>
   );
 };
