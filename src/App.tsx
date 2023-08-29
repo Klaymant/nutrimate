@@ -9,19 +9,19 @@ const App = () => {
     <>
       <UserDataProvider>
         <BrowserRouter>
-          <div className="flex justify-center mb-8">
+          <section className="flex justify-center mb-8">
             <div className="w-full mx-4 sm:w-96">
               <nav className="mt-4 font-semibold">
                 <Menu />
               </nav>
 
-              <section className="rounded-md bg-background-dark mt-4 p-2">
+              <main id="main-content" className="rounded-md bg-background-dark mt-4 p-2">
                 <Routes>
                   {routes.map((route, index) => <Route key={index} {...route} />)}
                 </Routes>
-              </section>
+              </main>
             </div>
-          </div>
+          </section>
         </BrowserRouter>
       </UserDataProvider>
     </>
