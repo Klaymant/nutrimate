@@ -67,7 +67,7 @@ const Macros = () => {
   return (
     <>
       <div className="flex flex-start">
-        <div className="m-2 w-full">
+        <form className="m-2 w-full">
           <Input value={height.value} setValue={height.setValue} type="number">Height</Input>
           <Input value={weight.value} setValue={weight.setValue} type="number">Weight</Input>
           <Input value={age.value} setValue={age.setValue} type="number">Age</Input>
@@ -114,7 +114,7 @@ const Macros = () => {
               carbsAmount={carbsAmount.value}
             />
           )}
-        </div>
+        </form>
       </div>
     </>
   );
