@@ -10,6 +10,7 @@ export const useDelayedBmi = (bmi: number) => {
         setDelayedBmi(i);
         await TimeUtil.sleep();
       }
+      setDelayedBmi(bmi);
     })()
   }, [bmi]);
 

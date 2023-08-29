@@ -15,7 +15,7 @@ export const CalculationUtil = {
     if (weight === 0 || height === 0)
       return 0;
     
-    return Math.round(weight / (height / 100) ** 2);
+    return +(weight / (height / 100) ** 2).toFixed(1);
   },
   calculateCalories(userData: MacrosData): number {
     return Math.round(
