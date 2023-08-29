@@ -2,17 +2,24 @@ import { useEffect, useState } from "react";
 import { TimeUtil } from "../../services/TimeUtil";
 
 export const useDelayedBmi = (bmi: number) => {
-  const [delayedBmi, setDelayedBmi] = useState(bmi);
+  const [result, setResult] = useState(bmi);
+  const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
     (async () => {
+      setIsRunning(true);
+
       for (let i = 0; i < bmi; i++) {
-        setDelayedBmi(i);
+        setResult(i);
         await TimeUtil.sleep();
       }
-      setDelayedBmi(bmi);
+      setResult(bmi);
+      setIsRunning(false);
     })()
   }, [bmi]);
 
-  return delayedBmi;
+  return {
+    result,
+    isRunning,
+  };
 }
