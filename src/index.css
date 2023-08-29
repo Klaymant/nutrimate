@@ -8,6 +8,9 @@
     --cornflower-blue: #6495ED;
     --cream: #FFFCF6;
     --primary: var(--cornflower-blue);
+    --success: #0eb944;
+    --error: #e05a42;
+    --warning: #f5a623;
   }
 
   body {

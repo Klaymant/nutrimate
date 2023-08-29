@@ -1,26 +1,30 @@
-type BmiColor = 'red-500' | 'secondary';
-type BmiItem = { value: number; color: BmiColor, weightStatus: WeightStatus };
-type WeightStatus = 'obesity' | 'overweight' | 'normal weight' | 'underweight';
+type BmiItem = { value: number; style: string, weightStatus: WeightStatus };
+type WeightStatus = 'morbid obesity' | 'obesity' | 'overweight' | 'normal weight' | 'underweight';
 
 export const BMI: Array<BmiItem> = [
   {
+    value: 40,
+    style: 'border-error-dark text-error-dark',
+    weightStatus: 'morbid obesity',
+  },
+  {
     value: 30,
-    color: 'red-500',
+    style: 'border-error text-error',
     weightStatus: 'obesity',
   },
   {
     value: 25,
-    color: 'red-500',
+    style: 'border-warning text-warning',
     weightStatus: 'overweight',
   },
   {
-    value: 18,
-    color: 'secondary',
+    value: 18.5,
+    style: 'text-success border-success',
     weightStatus: 'normal weight',
   },
   {
     value: 0,
-    color: 'red-500',
+    style: 'text-error border-error',
     weightStatus: 'underweight',
   },
 ];
