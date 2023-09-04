@@ -1,0 +1,35 @@
+@media screen, print {
+    .card-select {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        width: 7rem;
+        height: 7rem;
+        border-radius: 10px;
+    }
+
+    .card-select.unselected {
+        background-color: #D1D5DB;
+        color: black;
+    }
+
+    .card-select.selected {
+        background-color: var(--primary);
+        color: white;
+    }
+
+    .card-select input[type="radio"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+    }
+
+    .card-select label {
+        text-align: center;
+    }
+}

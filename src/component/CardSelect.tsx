@@ -1,7 +1,8 @@
 import { Dispatch, ReactNode, SetStateAction, createContext, useContext } from "react";
 
-const CardContext = createContext<{ value: any, setValue: Dispatch<SetStateAction<any>> }>({
+const CardContext = createContext<{ value: any, setValue: Dispatch<SetStateAction<any>>; title: string | null }>({
     value: null,
+    title: null,
     setValue: () => {},
 });
 
@@ -9,13 +10,13 @@ export const CardSelect = <T,>({ children, value, setValue, title = null }: Prop
     return (
         <>
             {title && <h2 className="text-lg">{title}</h2>}
-            <ul
+            <div
                 className="flex flex-wrap gap-4 ml-4 leading-none font-semibold my-4"
             >
-                <CardContext.Provider value={{ value, setValue }}>
+                <CardContext.Provider value={{ value, setValue, title }}>
                     {children}
                 </CardContext.Provider>
-            </ul>
+            </div>
         </>
     );
 };
@@ -24,32 +25,21 @@ CardSelect.Item = (props: CardSelectItemProps) => {
 }
 
 const CardSelectItem = ({ children, icon, alt, choice, index }: CardSelectItemProps) => {
-    const { value, setValue } = useContext(CardContext);
+    const { value, setValue, title } = useContext(CardContext);
+    const isSelected = value === choice;
     const handleChange = () => {
         setValue(choice);
     };
-    const onKeyDown = (keyEvent: any) => {
-        if (keyEvent.key === 'Enter') {
-            setValue(choice);
-        }
-    };
-    const isSelected = value === choice;
-    const baseClasses = 'flex justify-center items-center rounded-xl p-4 text-center flex-col w-28 h-28 cursor-pointer';
-    const unselectedClasses = 'bg-gray-300 text-black';
-    const selectedClasses = 'bg-primary text-white';
-    const itemClasses = [baseClasses, isSelected ? selectedClasses : unselectedClasses].join(' ');
 
     return (
         <>
-            <li
-                onClick={handleChange}
-                className={itemClasses}
-                tabIndex={0}
-                onKeyDown={onKeyDown}
-            >
+            <div className={`card-select ${isSelected ? 'selected' : 'unselected'}`}>
                 <img src={icon} alt={alt} className="h-6 w-6 mb-2" />
-                { children }
-            </li>
+                <input type="radio" id={String(children)} name={String(title)} onChange={handleChange} />
+                <label htmlFor={String(children)}>
+                    {children}
+                </label>
+            </div>
         </>
     );
 };

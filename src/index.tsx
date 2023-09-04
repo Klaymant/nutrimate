@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import './select.css';
 import './range-input.css';
+import './card-select.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 

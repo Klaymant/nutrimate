@@ -4,7 +4,7 @@ import Input from "../component/Input";
 import { useUserData } from "../providers/UserProvider";
 
 const Bmi = () => {
-  const { height, weight, bmi, updateBmi }= useUserData();
+  const { height, weight, bmi, updateBmi } = useUserData();
 
   return (
     <>
