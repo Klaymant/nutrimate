@@ -28,7 +28,34 @@
       monospace;
   }
 
+  nav {
+    margin-bottom: 18px;
+  }
+
   nav ul li {
     display: inline;
+  }
+
+  menu {
+    display: inline;
+    margin-left: 4px;
+  }
+
+  menu li {
+    display: inline;
+  }
+
+  menu li button {
+    border-radius: 4px;
+    padding: 4px;
+    margin: 0px 2px;
+  }
+
+  menu li button.unselected {
+    background-color: gray;
+  }
+
+  menu li button.selected {
+    background-color: var(--cornflower-blue);
   }
 }

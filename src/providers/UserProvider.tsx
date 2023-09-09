@@ -2,7 +2,7 @@ import { createContext, useContext } from "react";
 import { ActivityLevel, Gender, PhysicalGoal } from "../types/generic";
 import { useContextState } from "../hook/UseContextState";
 import { State } from "../types/State";
-import { CalculationUtil } from "../services/CalculationUtil";
+import { FormulaCalculator } from "../services/CalculationUtil";
 import { Macros, MacrosData } from "../types/UserData";
 import { UserDataStorageManager } from "../services/DataStorageManager";
 import { UserDataManager } from "../services/UserDataManager";
@@ -34,11 +34,18 @@ export const UserDataProvider = ({ children }: Props) => {
     });
   };
 
-  const updateMacros = () => {
-    const userData: MacrosData = { gender: gender.value, height: height.value, weight: weight.value, age: age.value, activityLevel: UserDataManager.getActivityLevelLabel(activityLevel.value), physicalGoal: physicalGoal.value };
-    const newCaloriesAmount = CalculationUtil.calculateCalories(userData);
-    const newProteinsAmount = CalculationUtil.calculateProteins(userData);
-    const newFatAmount = CalculationUtil.calculateFat(weight.value);
+  const updateMacros = (formulaCalculator: FormulaCalculator) => {
+    const userData: MacrosData = {
+      gender: gender.value,
+      height: height.value,
+      weight: weight.value,
+      age: age.value,
+      activityLevel: UserDataManager.getActivityLevelLabel(activityLevel.value),
+      physicalGoal: physicalGoal.value,
+    };
+    const newCaloriesAmount = formulaCalculator.calculateCalories(userData);
+    const newProteinsAmount = formulaCalculator.calculateProteins(userData);
+    const newFatAmount = formulaCalculator.calculateFat(weight.value);
 
     caloriesAmount.setValue(newCaloriesAmount);
     proteinsAmount.setValue(newProteinsAmount);
@@ -50,12 +57,12 @@ export const UserDataProvider = ({ children }: Props) => {
       fatAmount: newFatAmount,
     };
 
-    carbsAmount.setValue(CalculationUtil.calculateCarbs(macrosData));
+    carbsAmount.setValue(formulaCalculator.calculateCarbs(macrosData));
     updateStoredUserData();
   };
 
-  const updateBmi = () => {
-    const newBmi = CalculationUtil.calculateBmi(weight.value, height.value);
+  const updateBmi = (formulaCalculator: FormulaCalculator) => {
+    const newBmi = formulaCalculator.calculateBmi(weight.value, height.value);
 
     bmi.setValue(newBmi);
     updateStoredUserData();
@@ -109,6 +116,6 @@ type UserDataContextValues = {
   fatAmount: State<number>;
   carbsAmount: State<number>;
   bmi: State<number>;
-  updateBmi: () => void;
-  updateMacros: () => void;
+  updateBmi: (formulaCalculator: FormulaCalculator) => void;
+  updateMacros: (formulaCalculator: FormulaCalculator) => void;
 };

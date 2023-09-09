@@ -7,11 +7,12 @@ import feminineIcon from '../assets/img/femenine.png';
 import scalesIcon from '../assets/img/scales.png';
 import measurementIcon from '../assets/img/measurement.png';
 import bicepsIcon from '../assets/img/muscle.png';
-
 import { CardSelect, CardSelectOptions } from "../component/CardSelect";
 import { Gender, PhysicalGoal } from "../types/generic";
 import { RangeInput } from "../component/RangeInput";
 import { ACTIVITY_LEVEL_MAPPER } from "../services/UserDataManager";
+import { FormulaCalculationConverter } from "../services/CalculationUtil";
+import { useSettings } from "../providers/SettingsProvider";
 
 const PHYSICAL_GOALS_ITEMS: CardSelectOptions<PhysicalGoal>[] = [
   {
@@ -63,13 +64,15 @@ const Macros = () => {
     carbsAmount,
     updateMacros,
   } = useUserData();
+  const { unitSystem, heightUnitSystemLabel, weightUnitSystemLabel } = useSettings()
+  const formulaCalculator = FormulaCalculationConverter(unitSystem.value);
 
   return (
     <>
       <div className="flex flex-start">
         <form className="m-2 w-full">
-          <Input value={height.value} setValue={height.setValue} type="number">Height</Input>
-          <Input value={weight.value} setValue={weight.setValue} type="number">Weight</Input>
+          <Input value={height.value} setValue={height.setValue} type="number">Height ({heightUnitSystemLabel})</Input>
+          <Input value={weight.value} setValue={weight.setValue} type="number">Weight ({weightUnitSystemLabel})</Input>
           <Input value={age.value} setValue={age.setValue} type="number">Age</Input>
           <CardSelect value={physicalGoal.value} setValue={physicalGoal.setValue} title="Physical Goal">
               {PHYSICAL_GOALS_ITEMS.map((item, index) => (
@@ -104,7 +107,7 @@ const Macros = () => {
             setValue={activityLevel.setValue}
             valueDisplay={(value) => <p>{ACTIVITY_LEVEL_MAPPER[Number(value)].message}</p>}
           />
-          <Button onClick={updateMacros}>Calculate</Button>
+          <Button onClick={() => updateMacros(formulaCalculator)}>Calculate</Button>
 
           {caloriesAmount.value !== 0 && (
             <MacrosResult
