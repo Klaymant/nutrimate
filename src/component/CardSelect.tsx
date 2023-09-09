@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction, createContext, useContext } from "react";
+import { Dispatch, ReactNode, SetStateAction, createContext, useContext, useRef } from "react";
 
 const CardContext = createContext<{ value: any, setValue: Dispatch<SetStateAction<any>>; title: string | null }>({
     value: null,
@@ -25,6 +25,7 @@ CardSelect.Item = (props: CardSelectItemProps) => {
 }
 
 const CardSelectItem = ({ children, icon, alt, choice, index }: CardSelectItemProps) => {
+    const inputRef = useRef<HTMLInputElement>(null);
     const { value, setValue, title } = useContext(CardContext);
     const isSelected = value === choice;
     const handleChange = () => {
@@ -33,9 +34,14 @@ const CardSelectItem = ({ children, icon, alt, choice, index }: CardSelectItemPr
 
     return (
         <>
-            <div className={`card-select ${isSelected ? 'selected' : 'unselected'}`}>
+            <div
+                className={`card-select ${isSelected ? 'selected' : 'unselected'}`}
+                onClick={() => {
+                    inputRef?.current?.click();
+                }}
+            >
                 <img src={icon} alt={alt} className="h-6 w-6 mb-2" />
-                <input type="radio" id={String(children)} name={String(title)} onChange={handleChange} />
+                <input ref={inputRef} type="radio" id={String(children)} name={String(title)} onChange={handleChange} />
                 <label htmlFor={String(children)}>
                     {children}
                 </label>
