@@ -4,7 +4,7 @@ import { routes } from "./routes";
 import { BrowserRouter } from "react-router-dom";
 import { Menu } from "./Menu";
 import { SettingsProvider } from "./providers/SettingsProvider";
-import { UnitSystemSelector } from "./component/UnitSystemSelector";
+import { Footer } from "./component/Footer";
 
 const App = () => {
   return (
@@ -26,6 +26,7 @@ const App = () => {
                 </main>
               </div>
             </section>
+            <Footer />
           </BrowserRouter>
         </SettingsProvider>
       </UserDataProvider>

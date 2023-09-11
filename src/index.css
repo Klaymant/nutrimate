@@ -65,6 +65,15 @@
     background-color: var(--cornflower-blue);
   }
 
+  address {
+    display: inline;
+  }
+
+  address a {
+    font-style: normal;
+    text-decoration: underline;
+  }
+
   #home {
     padding: 4px;
   }
@@ -75,4 +84,9 @@
     border-radius: 4px;
   }
 
+  #footer {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
 }
