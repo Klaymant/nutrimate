@@ -28,7 +28,13 @@
       monospace;
   }
 
-  nav {
+  h1 {
+    font-size: 2rem;
+    background-color: var(--primary);
+    margin-top: 10px;
+    border-radius: 4px;
+    color: white;
+  }
     margin-bottom: 18px;
   }
 
@@ -58,4 +64,15 @@
   menu li button.selected {
     background-color: var(--cornflower-blue);
   }
+
+  #home {
+    padding: 4px;
+  }
+
+  #home footer {
+    background-color: gray;
+    padding: 4px;
+    border-radius: 4px;
+  }
+
 }

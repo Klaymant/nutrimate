@@ -1,10 +1,12 @@
-import { Navigate, RouteProps } from "react-router-dom";
+import { RouteProps } from "react-router-dom";
 import Bmi from "./page/Bmi";
 import Macros from "./page/Macros";
+import { Home } from "./page/Home";
 
 export const ROUTE_PATHS = {
     BMI: '/bmi',
     MACROS: '/macros',
+    HOME: '/',
 };
 
 export const routes: RouteProps[] = [
@@ -18,6 +20,6 @@ export const routes: RouteProps[] = [
     },
     {
         path: '/',
-        element: <Navigate replace to={ROUTE_PATHS.BMI} />,
+        element: <Home />,
     },
 ];
