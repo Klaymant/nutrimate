@@ -12,7 +12,7 @@ const App = () => {
       <UserDataProvider>
         <SettingsProvider>
           <BrowserRouter>
-            <section className="flex justify-center mb-8">
+            <section className="flex justify-center mb-4">
               <div className="w-full mx-4 sm:w-96">
                 <h1><Link to='/'>🥗 Nutrimate</Link></h1>
                 <nav id="main" className="mt-4 font-semibold">
