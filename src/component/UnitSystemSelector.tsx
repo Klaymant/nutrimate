@@ -23,7 +23,7 @@ const UnitSystemSelectorElement = ({ children, label }: UnitSystemSelectorElemen
 
 export const UnitSystemSelector = () => (
   <div>
-    Unit system:
+    Unit of measure system:
     <menu>
       <UnitSystemSelectorElement label='imperial'>Imperial</UnitSystemSelectorElement>
       <UnitSystemSelectorElement label='metric'>Metric</UnitSystemSelectorElement>

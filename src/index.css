@@ -35,11 +35,31 @@
     border-radius: 4px;
     color: white;
   }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  main p {
+    margin: 10px 0;
+  }
+
+  main a {
+    text-decoration: underline;
+  }
+
+  nav#main {
     margin-bottom: 18px;
   }
 
-  nav ul li {
+  nav#main ul li {
     display: inline;
+  }
+
+  nav ul li {
+    list-style-type: disc;
+    list-style-position: inside;
+    margin-left: 0;
   }
 
   menu {

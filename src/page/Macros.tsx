@@ -13,6 +13,7 @@ import { RangeInput } from "../component/RangeInput";
 import { ACTIVITY_LEVEL_MAPPER } from "../services/UserDataManager";
 import { FormulaCalculationConverter } from "../services/CalculationUtil";
 import { useSettings } from "../providers/SettingsProvider";
+import { UnitSystemSelector } from "../component/UnitSystemSelector";
 
 const PHYSICAL_GOALS_ITEMS: CardSelectOptions<PhysicalGoal>[] = [
   {
@@ -69,6 +70,7 @@ const Macros = () => {
 
   return (
     <>
+      <UnitSystemSelector />
       <div className="flex flex-start">
         <form className="m-2 w-full">
           <Input value={height.value} setValue={height.setValue} type="number">Height ({heightUnitSystemLabel})</Input>
