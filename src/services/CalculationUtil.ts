@@ -10,6 +10,12 @@ const Formulas = {
   },
 };
 
+const MACRO_DENSITY = {
+  PROTEINS: 4,
+  FAT: 9,
+  CARBS: 4,
+};
+
 export const FormulaCalculationConverter = (unitSystem: UnitSystem = 'metric'): FormulaCalculator => {
   const weightFactor = unitSystem === 'imperial' ? 0.45 : 1;
   const heightFactor = unitSystem === 'imperial' ? 2.54 : 1;
@@ -66,7 +72,7 @@ export const BaseFormulaCalculator: FormulaCalculator = {
     return Math.round(weight * 1);
   },
   calculateCarbs(macros: Pick<Macros, 'caloriesAmount' | 'proteinsAmount' | 'fatAmount'>): number {
-    return Math.round((macros.caloriesAmount - (4 * macros.proteinsAmount) - (4 * macros.fatAmount)) / 4);
+    return Math.round((macros.caloriesAmount - (MACRO_DENSITY.PROTEINS * macros.proteinsAmount) - (MACRO_DENSITY.FAT * macros.fatAmount)) / 4);
   },
 };
 
