@@ -1,8 +1,8 @@
 import { ACTIVITY_LEVEL_FACTOR, PHYSICAL_GOAL_FACTOR } from "../factors";
 import { Macros, MacrosData } from "../types/UserData";
 
-const BasalMetabolicRateFormulas = {
-  harris(userData: MacrosData) {
+const BasalMetabolicRateFormulas: Record<string, (userData: MacrosData) => number> = {
+  harris(userData: MacrosData): number {
     if (userData.gender === 'male')
       return 88.362 + (13.397 * userData.weight) + (4.799 * userData.height ) - (5.677 * userData.age);
 
