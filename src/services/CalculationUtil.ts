@@ -1,7 +1,7 @@
 import { ACTIVITY_LEVEL_FACTOR, PHYSICAL_GOAL_FACTOR } from "../factors";
 import { Macros, MacrosData } from "../types/UserData";
 
-const Formulas = {
+const BasalMetabolicRateFormulas = {
   harris(userData: MacrosData) {
     if (userData.gender === 'male')
       return 88.362 + (13.397 * userData.weight) + (4.799 * userData.height ) - (5.677 * userData.age);
@@ -60,7 +60,7 @@ export const BaseFormulaCalculator: FormulaCalculator = {
   },
   calculateCalories(userData: MacrosData): number {
     return Math.round(
-      Formulas.harris(userData) * ACTIVITY_LEVEL_FACTOR[userData.activityLevel].calories * PHYSICAL_GOAL_FACTOR[userData.physicalGoal].calories
+      BasalMetabolicRateFormulas.harris(userData) * ACTIVITY_LEVEL_FACTOR[userData.activityLevel].calories * PHYSICAL_GOAL_FACTOR[userData.physicalGoal].calories
     );
   },
   calculateProteins(userData: MacrosData): number {
