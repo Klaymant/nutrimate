@@ -9,8 +9,8 @@
     --cornflower-blue: #6495ED;
     --cream: #FFFCF6;
     --cream-dark: #e5e2dd;
-    --primary: var(--cornflower-blue);
-    --secondary: var(--mint-green);
+    --primary: var(--mint-green);
+    --secondary: var(--cornflower-blue);
     --success: #0eb944;
     --error: #e05a42;
     --warning: #f5a623;
@@ -32,7 +32,7 @@
   }
 
   header {    
-    background-color: var(--secondary);
+    background-color: var(--primary);
   }
 
   h1 {
@@ -57,7 +57,7 @@
   nav#main {
     display: flex;
     justify-content: center;
-    background-color: var(--mint-green-dark);
+    background-color: var(--primary);
     padding: 0.25rem;
     font-weight: 600;
   }
@@ -94,7 +94,7 @@
   }
 
   menu li button.selected {
-    color: var(--cornflower-blue);
+    color: var(--primary);
   }
 
   address {

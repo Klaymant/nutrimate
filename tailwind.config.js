@@ -28,8 +28,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: COLORS["cornflower-blue"],
-        secondary: COLORS["mint-green"],
+        primary: COLORS["mint-green"],
+        secondary: COLORS["cornflower-blue"],
         background: COLORS["cream"],
         error: COLORS["error"],
         success: COLORS["success"],
