@@ -25,8 +25,8 @@ export const UnitSystemSelector = () => (
   <div>
     Unit of measure system:
     <menu>
-      <UnitSystemSelectorElement label='imperial'>Imperial</UnitSystemSelectorElement>
       <UnitSystemSelectorElement label='metric'>Metric</UnitSystemSelectorElement>
+      <UnitSystemSelectorElement label='imperial'>Imperial</UnitSystemSelectorElement>
     </menu>
   </div>
 );
