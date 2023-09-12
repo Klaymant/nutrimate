@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-const getActiveClasses = (active: boolean) => active ? 'bg-primary border-primary text-white' : 'bg-gray-300 text-black';
+const getActiveClasses = (active: boolean) => active ? 'text-white' : 'text-black';
 
 const NavButton = ({ children, path }: NavButtonProps) => {
   const location = useLocation();
@@ -11,7 +11,7 @@ const NavButton = ({ children, path }: NavButtonProps) => {
     <li>
       <Link
         to={path}
-        className={`font-semibold ${getActiveClasses(isActive)} p-1.5 mr-2 rounded-md`}
+        className={`${getActiveClasses(isActive)}`}
       >
         {children}
       </Link>

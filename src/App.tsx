@@ -12,13 +12,15 @@ const App = () => {
       <UserDataProvider>
         <SettingsProvider>
           <BrowserRouter>
-            <section className="flex justify-center mb-4">
-              <div className="w-full mx-4 sm:w-96">
-                <h1><Link to='/'>🥗 Nutrimate</Link></h1>
-                <nav id="main" className="mt-4 font-semibold">
-                  <Menu />
-                </nav>
-                <main id="main-content" className="rounded-md bg-background-dark mt-4 p-2">
+            <section className="flex justify-center">
+              <div className="w-full">
+                <header>
+                  <h1><Link to='/'>🥗 Nutrimate</Link></h1>
+                  <nav id="main" className="font-semibold">
+                    <Menu />
+                  </nav>
+                </header>
+                <main id="main-content" className="rounded-md p-2">
                   <Routes>
                     {routes.map((route, index) => <Route key={index} {...route} />)}
                   </Routes>
