@@ -57,7 +57,7 @@
   nav#main {
     display: flex;
     justify-content: center;
-    background-color: var(--primary);
+    background-color: var(--mint-green-dark);
     padding: 0.25rem;
     font-weight: 600;
   }
