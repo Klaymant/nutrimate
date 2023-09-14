@@ -5,7 +5,7 @@ const BmiResult = ({ bmi }: BmiResultProps) => {
   const { result, isRunning } = useDelayedBmi(bmi);
   const bmiItem = getBmiItem(bmi);
   const resultClasses =
-    `flex mt-4 border-4 w-20 h-20 rounded-full text-center justify-center items-center p-8 text-xl bg-opacity-70 shadow-md ${bmiItem.style}`;
+    `flex mt-4 border-4 w-20 h-20 rounded-full text-center justify-center items-center p-8 text-xl bg-opacity-70 shadow-md ${bmiItem.style} ${!isRunning ? 'bounce' : ''}`;
 
   return (
     <>
