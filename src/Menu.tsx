@@ -7,6 +7,7 @@ export const Menu = () => (
 			<NavButton path={ROUTE_PATHS.HOME}>Home</NavButton>
 			<NavButton path={ROUTE_PATHS.BMI}>BMI</NavButton>
 			<NavButton path={ROUTE_PATHS.MACROS}>Macros</NavButton>
+			<NavButton path={ROUTE_PATHS.BMR}>BMR</NavButton>
 		</ul>
 	</>
 );

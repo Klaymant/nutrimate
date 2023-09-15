@@ -8,6 +8,7 @@ export type UserData = {
   activityLevel: ActivityLevel;
   physicalGoal: PhysicalGoal;
   bmi: number;
+  bmr: number;
 } & Macros;
 
 export type Macros = {
@@ -18,3 +19,4 @@ export type Macros = {
 };
 
 export type MacrosData = Pick<UserData, 'gender' | 'height' | 'weight' | 'age' | 'activityLevel' | 'physicalGoal'>;
+export type BmrData = Pick<UserData,  'gender' | 'height' | 'weight' | 'age'>;

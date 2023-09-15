@@ -1,4 +1,4 @@
-import { Macros, MacrosData } from "../../types/UserData";
+import { BmrData, Macros, MacrosData } from "../../types/UserData";
 import { FormulaCalculationConverter } from "../CalculationUtil";
 
 describe('BMI calculation', () => {
@@ -13,7 +13,7 @@ describe('BMI calculation', () => {
     const formulaCalculator = FormulaCalculationConverter('metric');
     const result: number = formulaCalculator.calculateBmi(weight, height);
 
-    expect(expectedBmi).toBe(result);
+    expect(result).toBe(expectedBmi);
   });
 
   it.each<BmiDataset>([
@@ -24,7 +24,7 @@ describe('BMI calculation', () => {
     const formulaCalculator = FormulaCalculationConverter('metric');
     const result: number = formulaCalculator.calculateBmi(weight, height);
 
-    expect(expectedBmi).toBe(result);
+    expect(result).toBe(expectedBmi);
   });
 });
 
@@ -94,7 +94,7 @@ describe('Calories needs calculation', () => {
     const formulaCalculator = FormulaCalculationConverter('metric');
     const result: number = formulaCalculator.calculateCalories(data);
 
-    expect(expected).toBe(result);
+    expect(result).toBe(expected);
   });
 });
 
@@ -164,7 +164,7 @@ describe('Protein needs calculation', () => {
     const formulaCalculator = FormulaCalculationConverter('metric');
     const result: number = formulaCalculator.calculateProteins(data);
 
-    expect(expected).toBe(result);
+    expect(result).toBe(expected);
   });
 });
 
@@ -203,6 +203,88 @@ describe('Carbs needs calculation', () => {
     const formulaCalculator = FormulaCalculationConverter('metric');
     const result: number = formulaCalculator.calculateCarbs(data);
 
-    expect(expected).toBe(result);
+    expect(result).toBe(expected);
+  });
+});
+
+describe.only('BMR calculation', () => {
+  type BmrCalculationDataset = {
+    data: BmrData;
+    expected: number;
+  };
+
+  it.each<BmrCalculationDataset>([
+    {
+      data: {
+        height: 165,
+        weight: 62,
+        age: 30,
+        gender: 'male',
+      },
+      expected: 1541,
+    },
+    {
+      data: {
+        height: 155,
+        weight: 40,
+        age: 44,
+        gender: 'female',
+      },
+      expected: 1107,
+    },
+  ])('should give a result of $expected kcal', ({ data, expected }) => {
+    const formulaCalculator = FormulaCalculationConverter('metric');
+    const result: number = Math.round(formulaCalculator.calculateBmr(data));
+
+    expect(result).toBe(expected);
+  });
+
+  const BASE_USER: BmrData = {
+    height: 165,
+    weight: 62,
+    age: 30,
+    gender: 'male',
+  };
+
+  it.each<BmrCalculationDataset>([
+    {
+      data: {
+        ...BASE_USER,
+        height: 0,
+        weight: 80,
+      },
+      expected: 0,
+    },
+    {
+      data: {
+        ...BASE_USER,
+        height: 176,
+        weight: 0,
+      },
+      expected: 0,
+    },
+    {
+      data: {
+        ...BASE_USER,
+        gender: 'female',
+        height: 0,
+        weight: 80,
+      },
+      expected: 0,
+    },
+    {
+      data: {
+        ...BASE_USER,
+        gender: 'female',
+        height: 176,
+        weight: 0,
+      },
+      expected: 0,
+    },
+  ])('should give a BMR of 0 if height or weight is 0', ({ data, expected }) => {
+    const formulaCalculator = FormulaCalculationConverter('metric');
+    const result: number = Math.round(formulaCalculator.calculateBmr(data));
+
+    expect(result).toBe(expected);
   });
 });

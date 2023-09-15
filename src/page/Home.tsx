@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ROUTE_PATHS } from "../routes";
 
 export const Home = () => {
   return (
@@ -8,8 +9,9 @@ export const Home = () => {
       <p>For now you can:</p>
       <nav>
         <ul>
-          <li><Link to='/bmi'>calculate your BMI.</Link></li>
-          <li><Link to='/macros'>estimate your nutrients needs.</Link></li>
+          <li><Link to={ROUTE_PATHS.BMI}>calculate your <abbr title="Body Mass Index">BMI</abbr>.</Link></li>
+          <li><Link to={ROUTE_PATHS.MACROS}>estimate your nutrients needs.</Link></li>
+          <li><Link to={ROUTE_PATHS.BMR}>estimate your <abbr title="Basic Metabolic Rate">BMR</abbr>.</Link></li>
         </ul>
       </nav>
       <p>Further tools could (and normally will) be added in the future.</p>

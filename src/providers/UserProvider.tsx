@@ -3,7 +3,7 @@ import { ActivityLevel, Gender, PhysicalGoal } from "../types/generic";
 import { useContextState } from "../hook/UseContextState";
 import { State } from "../types/State";
 import { FormulaCalculator } from "../services/CalculationUtil";
-import { Macros, MacrosData } from "../types/UserData";
+import { BmrData, Macros, MacrosData } from "../types/UserData";
 import { UserDataStorageManager } from "../services/DataStorageManager";
 import { UserDataManager } from "../services/UserDataManager";
 
@@ -22,6 +22,7 @@ export const UserDataProvider = ({ children }: Props) => {
   const fatAmount = useContextState(savedUserData?.fatAmount || 0);
   const carbsAmount = useContextState(savedUserData?.carbsAmount || 0);
   const bmi = useContextState(savedUserData?.bmi || 0);
+  const bmr = useContextState(savedUserData?.bmr || 0);
 
   const updateStoredUserData = () => {
     UserDataStorageManager.update({
@@ -68,6 +69,19 @@ export const UserDataProvider = ({ children }: Props) => {
     updateStoredUserData();
   };
 
+  const updateBmr = (formulaCalculator: FormulaCalculator) => {
+    const userData: BmrData = {
+      gender: gender.value,
+      height: height.value,
+      weight: weight.value,
+      age: age.value,
+    };
+    const newBmr = Math.round(formulaCalculator.calculateBmr(userData));
+
+    bmr.setValue(newBmr);
+    updateStoredUserData();
+  };
+
   return (
     <UserDataContext.Provider
       value={{
@@ -82,8 +96,10 @@ export const UserDataProvider = ({ children }: Props) => {
         fatAmount,
         carbsAmount,
         bmi,
+        bmr,
         updateBmi,
         updateMacros,
+        updateBmr,
       }}
     >
       {children}
@@ -116,6 +132,8 @@ type UserDataContextValues = {
   fatAmount: State<number>;
   carbsAmount: State<number>;
   bmi: State<number>;
+  bmr: State<number>;
   updateBmi: (formulaCalculator: FormulaCalculator) => void;
+  updateBmr: (formulaCalculator: FormulaCalculator) => void;
   updateMacros: (formulaCalculator: FormulaCalculator) => void;
 };
