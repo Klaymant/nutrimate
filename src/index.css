@@ -162,7 +162,7 @@
 
   .bmr-result output {
     display: block;
-    background-color: var(--primary);
+    border: solid 2px var(--primary);
     padding: 8px;
     border-radius: var(--border-radius-simple);
     width: 5rem;
