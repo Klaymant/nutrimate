@@ -1,3 +1,4 @@
+import { BmiDetails } from "../component/Bmi/BmiDetails";
 import BmiResult from "../component/Bmi/BmiResult";
 import Button from "../component/Button";
 import Input from "../component/Input";
@@ -18,6 +19,7 @@ const Bmi = () => {
         <Input value={height.value} setValue={height.setValue} type="number">Height ({heightUnitSystemLabel})</Input>
         <Input value={weight.value} setValue={weight.setValue} type="number">Weight ({weightUnitSystemLabel})</Input>
         <Button onClick={() => updateBmi(formulaCalculator)}>Calculate</Button>
+        <BmiDetails />
         {bmi.value > 0 && (
           <BmiResult bmi={bmi.value} />
         )}

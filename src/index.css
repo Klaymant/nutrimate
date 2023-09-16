@@ -11,9 +11,11 @@
     --cream-dark: #e5e2dd;
     --primary: var(--mint-green);
     --secondary: var(--cornflower-blue);
+    --background: #ccc;
     --success: #0eb944;
     --error: #e05a42;
     --warning: #f5a623;
+    --semibold: 600;
   }
 
   body {
@@ -59,7 +61,7 @@
     justify-content: center;
     background-color: var(--mint-green-dark);
     padding: 0.25rem;
-    font-weight: 600;
+    font-weight: var(--semibold);
   }
 
   nav#main ul li {
@@ -86,7 +88,7 @@
     border-radius: 4px;
     padding: 4px;
     margin: 0px 2px;
-    font-weight: 600;
+    font-weight: var(--semibold);
   }
 
   menu li button.unselected {
@@ -106,12 +108,41 @@
     text-decoration: underline;
   }
 
+  details {
+    margin-top: 20px;
+    background-color: var(--background);
+    padding: 8px;
+    border-radius: 4px;
+  }
+
+  summary {
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+
+  details ul {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+
+  dt::after {
+    content: ": ";
+  }
+
+  dl, dt, dd {
+    display: inline;
+  }
+
+  dt {
+    font-weight: var(--semibold);
+  }
+
   #home {
     padding: 4px;
   }
 
   #home footer {
-    background-color: gray;
+    background-color: var(--background);
     padding: 4px;
     border-radius: 4px;
   }
@@ -120,6 +151,15 @@
     display: flex;
     justify-content: center;
     margin-bottom: 1rem;
+  }
+
+  .formula {
+    font-weight: var(--semibold);
+    color: var(--cornflower-blue);
+  }
+
+  .formula .unity {
+    font-style: italic;
   }
 
   @media (min-width: 768px) {
