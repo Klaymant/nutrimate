@@ -46,7 +46,7 @@ export const Bmr = () => {
             <>
               <section className="bmr-result">
                 <h2>Your Basic Metabolic Rate</h2>
-                <output>{bmr.value}kcal</output>
+                <output className="bounce">{bmr.value}kcal</output>
               </section>
             </>
           )}
