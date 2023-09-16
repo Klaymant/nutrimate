@@ -16,6 +16,7 @@
     --error: #e05a42;
     --warning: #f5a623;
     --semibold: 600;
+    --border-radius-simple: 0.25rem;
   }
 
   body {
@@ -85,7 +86,7 @@
   }
 
   menu li button {
-    border-radius: 4px;
+    border-radius: var(--border-radius-simple);
     padding: 4px;
     margin: 0px 2px;
     font-weight: var(--semibold);
@@ -112,7 +113,7 @@
     margin-top: 20px;
     background-color: var(--background);
     padding: 8px;
-    border-radius: 4px;
+    border-radius: var(--border-radius-simple);
   }
 
   summary {
@@ -144,7 +145,7 @@
   #home footer {
     background-color: var(--background);
     padding: 4px;
-    border-radius: 4px;
+    border-radius: var(--border-radius-simple);
   }
 
   #footer {
@@ -163,7 +164,7 @@
     display: block;
     background-color: var(--primary);
     padding: 8px;
-    border-radius: 4px;
+    border-radius: var(--border-radius-simple);
     width: 5rem;
     margin: auto;
     margin-top: 0.25rem;
