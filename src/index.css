@@ -153,6 +153,22 @@
     margin-bottom: 1rem;
   }
 
+  .bmr-result {
+    text-align: center;
+    margin: 0.5rem 0;
+    font-weight: var(--semibold);
+  }
+
+  .bmr-result output {
+    display: block;
+    background-color: var(--primary);
+    padding: 8px;
+    border-radius: 4px;
+    width: 5rem;
+    margin: auto;
+    margin-top: 0.25rem;
+  }
+
   .formula {
     font-weight: var(--semibold);
     color: var(--cornflower-blue);
