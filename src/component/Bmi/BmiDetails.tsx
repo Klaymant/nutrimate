@@ -8,6 +8,7 @@ export const BmiDetails = () => (
 
     <p>It can be calculated as <span className="formula">mass (<span className="unity">kg</span>) / height<sup>2</sup> (<span className="unity">cm</span>)</span>.</p>
 
+    <h2>The different categories</h2>
     <p>
       These are the different categories of <strong>BMI</strong>:
     </p>
@@ -44,9 +45,10 @@ export const BmiDetails = () => (
       </li>
     </ul>
 
+    <h2>Limitations</h2>
     <p>
       Note that <strong>BMI</strong> has limitations and is not always accurate. For instance people with high muscle mass, an abdominal obesity or with short stature could have an imprecise <strong>BMI</strong>.<br/>
-      It's worth mentionning that this index is not the only indicator of a person's health and doesn't tell in itself if you're in good health or not.
+      It's worth mentionning that <b>this index is not the only indicator of a person's health</b> and doesn't tell in itself if you're in good health or not.
     </p>
   </details>
 );
