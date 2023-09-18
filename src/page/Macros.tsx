@@ -9,6 +9,7 @@ import { FormulaCalculationConverter } from "../services/CalculationUtil";
 import { useSettings } from "../providers/SettingsProvider";
 import { UnitSystemSelector } from "../component/UnitSystemSelector";
 import { GENDER_ITEMS, PHYSICAL_GOALS_ITEMS } from "../cardSelectionOptionsItems";
+import { MacrosDetails } from "../component/Macros/MacrosDetails";
 
 const Macros = () => {
   const {
@@ -69,6 +70,8 @@ const Macros = () => {
             valueDisplay={(value) => <p>{ACTIVITY_LEVEL_MAPPER[Number(value)].message}</p>}
           />
           <Button onClick={() => updateMacros(formulaCalculator)}>Calculate</Button>
+
+          <MacrosDetails />
 
           {caloriesAmount.value !== 0 && (
             <MacrosResult
