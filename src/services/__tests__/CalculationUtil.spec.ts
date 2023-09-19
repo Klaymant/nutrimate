@@ -207,7 +207,7 @@ describe('Carbs needs calculation', () => {
   });
 });
 
-describe.only('BMR calculation', () => {
+describe('BMR calculation', () => {
   type BmrCalculationDataset = {
     data: BmrData;
     expected: number;
