@@ -5,7 +5,7 @@ import useFocus from "../hook/UseFocus";
 const Input = ({ children, value, type = 'text', setValue }: InputProps) => {
   const { isFocused, focus, blur } = useFocus();
   const baseClasses = 'mr-6 mb-1 block text-lg';
-  const focusClasses = isFocused ? 'text-primary font-semibold ml-1 duration-300' : '';
+  const focusClasses = isFocused ? 'text-primary font-semibold duration-300 text-sm mb-3' : '';
   const labelClasses = [baseClasses, focusClasses].join(' ');
   
   const onChange = (event: any) => {
