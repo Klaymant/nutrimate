@@ -3,29 +3,46 @@ import Bmi from "./page/Bmi";
 import Macros from "./page/Macros";
 import { Home } from "./page/Home";
 import { Bmr } from "./page/Bmr";
+import { PageTitle } from "./component/PageTitle";
 
 export const ROUTE_PATHS = {
-    BMI: '/bmi',
-    MACROS: '/macros',
-    BMR: '/bmr',
-    HOME: '/',
+  BMI: '/bmi',
+  MACROS: '/macros',
+  BMR: '/bmr',
+  HOME: '/',
 };
 
+
 export const routes: RouteProps[] = [
-    {
-        path: ROUTE_PATHS.BMI,
-        element: <Bmi />,
-    },
-    {
-        path: ROUTE_PATHS.MACROS,
-        element: <Macros />,
-    },
-    {
-        path: ROUTE_PATHS.BMR,
-        element: <Bmr />,
-    },
-    {
-        path: '/',
-        element: <Home />,
-    },
+  {
+    path: ROUTE_PATHS.BMI,
+    element: (
+      <>
+        <PageTitle>BMI Calculator</PageTitle>
+        <Bmi />
+      </>
+    ),
+  },
+  {
+    path: ROUTE_PATHS.MACROS,
+    element: (
+      <>
+        <PageTitle>Macronutrient Calculator</PageTitle>
+        <Macros />
+      </>
+    ),
+  },
+  {
+    path: ROUTE_PATHS.BMR,
+    element: (
+      <>
+        <PageTitle>BMR Calculator</PageTitle>
+        <Bmr />
+      </>
+    ),
+  },
+  {
+    path: '/',
+    element: <Home />,
+  },
 ];
