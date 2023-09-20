@@ -34,15 +34,24 @@
       monospace;
   }
 
+  .site-title {
+    font-size: 2rem;
+    font-weight: var(--semibold);
+    display: block;
+    text-align: center;
+    padding: 0.25rem 0;
+  }
+
   header {    
     background-color: var(--primary);
   }
 
   h1 {
-    text-align: center;
+    font-weight: var(--semibold);
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
-    font-size: 2.25rem;
+    font-size: 1.75rem;
+    line-height: 2rem;
   }
 
   h2 {

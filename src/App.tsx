@@ -15,7 +15,7 @@ const App = () => {
             <section className="flex justify-center">
               <div className="w-full">
                 <header>
-                  <h1><Link to='/'>Nutrimate</Link></h1>
+                  <Link to='/' className="site-title">Nutrimate</Link>
                   <nav id="main" className="font-semibold">
                     <Menu />
                   </nav>

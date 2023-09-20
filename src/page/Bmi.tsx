@@ -14,6 +14,7 @@ const Bmi = () => {
 
   return (
     <>
+      <h1>Body Mass Index calculator</h1>
       <UnitSystemSelector />
       <form className="m-2" >
         <Input value={height.value} setValue={height.setValue} type="number">Height ({heightUnitSystemLabel})</Input>

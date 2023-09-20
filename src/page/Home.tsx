@@ -4,7 +4,7 @@ import { ROUTE_PATHS } from "../routes";
 export const Home = () => {
   return (
     <main id="home">
-      <h2>Welcome to Nutrimate!</h2>
+      <h1>Welcome to Nutrimate</h1>
       <p>This website is intended to be a <strong>nutrition toolbox</strong>.</p>
       <p>For now you can:</p>
       <nav>

@@ -21,6 +21,7 @@ export const Bmr = () => {
 
   return (
     <>
+      <h1>Basal Metabolic Rate calculator</h1>
       <UnitSystemSelector />
       <div className="flex flex-start">
         <form className="m-2 w-full">
@@ -45,7 +46,7 @@ export const Bmr = () => {
           {bmr.value > 0 && (
             <>
               <section className="bmr-result">
-                <h2>Your Basic Metabolic Rate</h2>
+                <h2>Your Basal Metabolic Rate</h2>
                 <output className="bounce">{bmr.value}kcal</output>
               </section>
             </>
