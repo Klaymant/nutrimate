@@ -6,6 +6,7 @@ import { FormulaCalculationConverter } from "../services/CalculationUtil";
 import { useSettings } from "../providers/SettingsProvider";
 import { UnitSystemSelector } from "../component/UnitSystemSelector";
 import { GENDER_ITEMS } from "../cardSelectionOptionsItems";
+import { BmrDetails } from "../component/Bmr/BmrDetails";
 
 export const Bmr = () => {
   const {
@@ -23,8 +24,8 @@ export const Bmr = () => {
     <>
       <h1>Basal Metabolic Rate calculator</h1>
       <UnitSystemSelector />
-      <div className="flex flex-start">
-        <form className="m-2 w-full">
+      <div className="bmr">
+        <form>
           <Input value={height.value} setValue={height.setValue} type="number">Height ({heightUnitSystemLabel})</Input>
           <Input value={weight.value} setValue={weight.setValue} type="number">Weight ({weightUnitSystemLabel})</Input>
           <Input value={age.value} setValue={age.setValue} type="number">Age</Input>
@@ -42,6 +43,7 @@ export const Bmr = () => {
               ))}
           </CardSelect>
           <Button onClick={() => updateBmr(formulaCalculator)}>Calculate</Button>
+          <BmrDetails />
 
           {bmr.value > 0 && (
             <>

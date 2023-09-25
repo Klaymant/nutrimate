@@ -168,6 +168,14 @@
     margin-bottom: 1rem;
   }
 
+  .bmr {
+    display: flex;
+  }
+
+  .bmr form {
+    width: 100%;
+  }
+
   .bmr-result {
     text-align: center;
     margin: 0.5rem 0;
