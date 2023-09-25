@@ -20,7 +20,7 @@ const App = () => {
                     <Menu />
                   </nav>
                 </header>
-                <main id="main-content" className="rounded-md p-2">
+                <main id="main-content">
                   <Routes>
                     {routes.map((route, index) => <Route key={index} {...route} />)}
                   </Routes>

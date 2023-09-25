@@ -58,6 +58,10 @@
     font-size: 1.5rem;
   }
 
+  #main-content {
+    padding: 1rem;
+  }
+
   main p {
     margin: 10px 0;
   }
