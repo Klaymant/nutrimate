@@ -1,7 +1,7 @@
 import { UserDataProvider } from "./providers/UserProvider";
 import { Route, Routes } from "react-router";
 import { routes } from "./routes";
-import { BrowserRouter, Link } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Menu } from "./Menu";
 import { SettingsProvider } from "./providers/SettingsProvider";
 import { Footer } from "./component/Footer";
