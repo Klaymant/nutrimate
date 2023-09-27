@@ -45,8 +45,6 @@ export const Bmr = () => {
             </CardSelect>
             <Button onClick={() => updateBmr(formulaCalculator)}>Calculate</Button>
           </div>
-          <BmrDetails />
-
           {bmr.value > 0 && (
             <>
               <section className="bmr-result">
@@ -55,6 +53,7 @@ export const Bmr = () => {
               </section>
             </>
           )}
+          <BmrDetails />
         </form>
       </div>
     </>

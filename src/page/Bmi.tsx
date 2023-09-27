@@ -22,10 +22,10 @@ const Bmi = () => {
           <Input value={weight.value} setValue={weight.setValue} type="number">Weight ({weightUnitSystemLabel})</Input>
           <Button onClick={() => updateBmi(formulaCalculator)}>Calculate</Button>
         </div>
-        <BmiDetails />
         {bmi.value > 0 && (
           <BmiResult bmi={bmi.value} />
         )}
+        <BmiDetails />
       </form>
     </>
   );

@@ -73,9 +73,6 @@ const Macros = () => {
             />
             <Button onClick={() => updateMacros(formulaCalculator)}>Calculate</Button>
           </div>
-
-          <MacrosDetails />
-
           {caloriesAmount.value !== 0 && (
             <MacrosResult
               caloriesAmount={caloriesAmount.value}
@@ -84,6 +81,7 @@ const Macros = () => {
               carbsAmount={carbsAmount.value}
             />
           )}
+          <MacrosDetails />
         </form>
       </div>
     </>
