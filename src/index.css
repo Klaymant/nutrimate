@@ -11,7 +11,7 @@
     --cream-dark: #e5e2dd;
     --primary: var(--mint-green);
     --secondary: var(--cornflower-blue);
-    --background: #ccc;
+    --background: #e3e3e3;
     --success: #0eb944;
     --error: #e05a42;
     --warning: #f5a623;
@@ -29,6 +29,12 @@
     background: var(--cream);
   }
 
+  #root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
@@ -43,7 +49,7 @@
   }
 
   header {    
-    background-color: var(--primary);
+    background: linear-gradient(90deg, var(--primary) 52%, var(--secondary) 100%);
   }
 
   h1 {
@@ -56,9 +62,10 @@
 
   h2 {
     font-size: 1.5rem;
+    color: var(--primary);
   }
 
-  #main-content {
+  main {
     padding: 1rem;
   }
 
@@ -73,8 +80,7 @@
   nav#main {
     display: flex;
     justify-content: center;
-    background-color: var(--mint-green-dark);
-    padding: 0.25rem;
+    padding: 0.5rem;
     font-weight: var(--semibold);
   }
 
@@ -123,10 +129,8 @@
   }
 
   details {
-    margin-top: 20px;
-    background-color: var(--background);
-    padding: 8px;
-    border-radius: var(--border-radius-simple);
+    margin-top: 5px;
+    padding: 4px;
   }
 
   details h2 {
@@ -137,6 +141,8 @@
   summary {
     font-size: 1.25rem;
     cursor: pointer;
+    color: var(--primary);
+    font-weight: var(--semibold);
   }
 
   details ul {
@@ -156,6 +162,16 @@
     font-weight: var(--semibold);
   }
 
+  form {
+    width: 100%;
+  }
+
+  .form-data {
+    padding: 0.5rem;
+    background-color: var(--background);
+    border-radius: var(--border-radius-simple);
+  }
+
   #home {
     padding: 4px;
   }
@@ -169,7 +185,8 @@
   #footer {
     display: flex;
     justify-content: center;
-    margin-bottom: 1rem;
+    padding: 1rem;
+    margin-top: auto;
   }
 
   .bmr {
@@ -206,7 +223,7 @@
   }
 
   @media (min-width: 768px) {
-    #main-content {
+    main {
       padding: 2rem 4rem;
     }
 

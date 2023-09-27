@@ -1,7 +1,7 @@
 export const Footer = () => (
   <footer id="footer">
     <div>
-      This website has been made by <address><a href='https://github.com/Klaymant'>Clément Gauthier</a>.</address>
+      <strong>Nutrimate</strong> is a website made by <address><a href='https://github.com/Klaymant'>Clément Gauthier</a>.</address>
     </div>
   </footer>
 );

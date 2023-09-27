@@ -16,10 +16,12 @@ const Bmi = () => {
     <>
       <h1>Body Mass Index calculator</h1>
       <UnitSystemSelector />
-      <form className="m-2" >
-        <Input value={height.value} setValue={height.setValue} type="number">Height ({heightUnitSystemLabel})</Input>
-        <Input value={weight.value} setValue={weight.setValue} type="number">Weight ({weightUnitSystemLabel})</Input>
-        <Button onClick={() => updateBmi(formulaCalculator)}>Calculate</Button>
+      <form>
+        <div className="form-data">
+          <Input value={height.value} setValue={height.setValue} type="number">Height ({heightUnitSystemLabel})</Input>
+          <Input value={weight.value} setValue={weight.setValue} type="number">Weight ({weightUnitSystemLabel})</Input>
+          <Button onClick={() => updateBmi(formulaCalculator)}>Calculate</Button>
+        </div>
         <BmiDetails />
         {bmi.value > 0 && (
           <BmiResult bmi={bmi.value} />

@@ -33,44 +33,46 @@ const Macros = () => {
       <h1>Macronutrients needs calculator</h1>
       <UnitSystemSelector />
       <div className="flex flex-start">
-        <form className="m-2 w-full">
-          <Input value={height.value} setValue={height.setValue} type="number">Height ({heightUnitSystemLabel})</Input>
-          <Input value={weight.value} setValue={weight.setValue} type="number">Weight ({weightUnitSystemLabel})</Input>
-          <Input value={age.value} setValue={age.setValue} type="number">Age</Input>
-          <CardSelect value={physicalGoal.value} setValue={physicalGoal.setValue} title="Physical Goal">
-              {PHYSICAL_GOALS_ITEMS.map((item, index) => (
-                <CardSelect.Item
-                  key={item.label}
-                  index={index}
-                  icon={item.icon}
-                  alt={item.alt}
-                  choice={item.choice}
-                >
-                  {item.label}
-                </CardSelect.Item>
-              ))}
+        <form>
+          <div className="form-data">
+            <Input value={height.value} setValue={height.setValue} type="number">Height ({heightUnitSystemLabel})</Input>
+            <Input value={weight.value} setValue={weight.setValue} type="number">Weight ({weightUnitSystemLabel})</Input>
+            <Input value={age.value} setValue={age.setValue} type="number">Age</Input>
+            <CardSelect value={physicalGoal.value} setValue={physicalGoal.setValue} title="Physical Goal">
+                {PHYSICAL_GOALS_ITEMS.map((item, index) => (
+                  <CardSelect.Item
+                    key={item.label}
+                    index={index}
+                    icon={item.icon}
+                    alt={item.alt}
+                    choice={item.choice}
+                  >
+                    {item.label}
+                  </CardSelect.Item>
+                ))}
+              </CardSelect>
+            <CardSelect value={gender.value} setValue={gender.setValue} title="Gender">
+                {GENDER_ITEMS.map((item, index) => (
+                  <CardSelect.Item
+                    key={item.label}
+                    index={index}
+                    icon={item.icon}
+                    alt={item.alt}
+                    choice={item.choice}
+                  >
+                    {item.label}
+                  </CardSelect.Item>
+                ))}
             </CardSelect>
-          <CardSelect value={gender.value} setValue={gender.setValue} title="Gender">
-              {GENDER_ITEMS.map((item, index) => (
-                <CardSelect.Item
-                  key={item.label}
-                  index={index}
-                  icon={item.icon}
-                  alt={item.alt}
-                  choice={item.choice}
-                >
-                  {item.label}
-                </CardSelect.Item>
-              ))}
-          </CardSelect>
-          <RangeInput
-            options={ACTIVITY_LEVEL_MAPPER.map((_, index) => String(index))}
-            label="Activity level"
-            value={activityLevel.value}
-            setValue={activityLevel.setValue}
-            valueDisplay={(value) => <p>{ACTIVITY_LEVEL_MAPPER[Number(value)].message}</p>}
-          />
-          <Button onClick={() => updateMacros(formulaCalculator)}>Calculate</Button>
+            <RangeInput
+              options={ACTIVITY_LEVEL_MAPPER.map((_, index) => String(index))}
+              label="Activity level"
+              value={activityLevel.value}
+              setValue={activityLevel.setValue}
+              valueDisplay={(value) => <p>{ACTIVITY_LEVEL_MAPPER[Number(value)].message}</p>}
+            />
+            <Button onClick={() => updateMacros(formulaCalculator)}>Calculate</Button>
+          </div>
 
           <MacrosDetails />
 

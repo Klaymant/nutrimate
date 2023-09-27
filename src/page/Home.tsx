@@ -3,7 +3,7 @@ import { ROUTE_PATHS } from "../routes";
 
 export const Home = () => {
   return (
-    <main id="home">
+    <section id="home">
       <h1>Welcome to Nutrimate</h1>
       <p>This website is intended to be a <strong>nutrition toolbox</strong>.</p>
       <p>For now you can:</p>
@@ -21,6 +21,6 @@ export const Home = () => {
           <p>Note that the estimations of nutrients given in this website are not supposed to replace medical advice. If you want to estimate your real needs you should see a nutritionist.</p>
         </small>
       </footer>
-    </main>
+    </section>
   );
 };

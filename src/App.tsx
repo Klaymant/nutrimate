@@ -15,12 +15,11 @@ const App = () => {
             <section className="flex justify-center">
               <div className="w-full">
                 <header>
-                  <Link to='/' className="site-title">Nutrimate</Link>
                   <nav id="main" className="font-semibold">
                     <Menu />
                   </nav>
                 </header>
-                <main id="main-content">
+                <main>
                   <Routes>
                     {routes.map((route, index) => <Route key={index} {...route} />)}
                   </Routes>

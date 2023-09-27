@@ -9,7 +9,7 @@ const CardContext = createContext<{ value: any, setValue: Dispatch<SetStateActio
 export const CardSelect = <T,>({ children, value, setValue, title = null }: Props<T>) => {
   return (
     <>
-      {title && <h2 className="text-lg">{title}</h2>}
+      {title && <p className="text-lg">{title}</p>}
       <div
         className="flex flex-wrap gap-2 leading-none font-semibold my-2"
       >
